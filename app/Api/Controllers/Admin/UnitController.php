@@ -2,6 +2,7 @@
 
 namespace App\Api\Controllers\Admin;
 
+use App\Api\Requests\Admin\Unit\DestroyRequest;
 use App\Api\Requests\Admin\Unit\IndexRequest;
 use App\Api\Requests\Admin\Unit\UpdateRequest;
 use App\Api\Services\Admin\UnitService;
@@ -57,5 +58,27 @@ class UnitController extends Controller
     public function update(UpdateRequest $request)
     {
         return apiReturn($this->service->update($request));
+    }
+
+    /**
+     * @OA\Delete(
+     *     path="/index.php/api/admin/unit",
+     *     tags={"Admin"},
+     *     summary="删除单位",
+     *     operationId="delete_unit",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *          mediaType="application/x-www-form-urlencoded",
+     *          @OA\Schema(required={"id"},
+     *             @OA\Property( property="id",description="unit id", type="integer"),
+     *         )
+     *     )),
+     *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
+     * )
+     */
+    public function destroy(DestroyRequest $request)
+    {
+        return apiReturn($this->service->destroy($request->id));
     }
 }

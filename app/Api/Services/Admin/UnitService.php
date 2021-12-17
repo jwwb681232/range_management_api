@@ -2,11 +2,11 @@
 
 namespace App\Api\Services\Admin;
 
-use App\Api\Transformers\Admin\Unit\IndexTransformer;
 use App\Models\Unit;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
+use App\Api\Transformers\Admin\Unit\IndexTransformer;
 
 class UnitService
 {
@@ -60,5 +60,15 @@ class UnitService
         $unit->save();
 
         return $unit->only(['id','name','status']);
+    }
+
+    /**
+     * @param $id
+     *
+     * @return int
+     */
+    public function destroy($id)
+    {
+        return $this->model->destroy($id);
     }
 }
