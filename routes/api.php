@@ -29,4 +29,5 @@ Route::get('/unit',['App\Api\Controllers\UnitController','index']);
 
 Route::group(['middleware'=>'auth:sanctum'],function(){
     Route::get('/admin/unit',['App\Api\Controllers\Admin\UnitController','index']);
+    Route::put('/admin/unit',['App\Api\Controllers\Admin\UnitController','update']);
 });

@@ -4,6 +4,8 @@ namespace App\Api\Services\Admin;
 
 use App\Api\Transformers\Admin\Unit\IndexTransformer;
 use App\Models\Unit;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class UnitService
@@ -22,13 +24,16 @@ class UnitService
      */
     public function index(Request $request)
     {
-        $page   = $request->input('page', 1);
-        $limit  = $request->input('limit', 10);
-        $status = $request->input('status');
-        $offset = ($page - 1) * $limit;
+        $keyword = $request->input('keyword');
+        $status  = $request->input('status');
+
+        $page    = $request->input('page', 1);
+        $limit   = $request->input('limit', 10);
+        $offset  = ($page - 1) * $limit;
 
         $condition = $this->model
-            ->when(is_int($status), fn($query) => $query->whereStatus($status));
+            ->when(is_numeric($status), fn($query) => $query->whereStatus($status))
+            ->when($keyword,fn($query)=>$query->where('name','LIKE',"%$keyword%"));
 
         $data['count']     = $condition->count();
         $data['page']      = $page;
@@ -42,4 +47,18 @@ class UnitService
         return $data;
     }
 
+    /**
+     * @param  Request  $request
+     *
+     * @return Unit|Unit[]|Collection|Model|null
+     */
+    public function update(Request $request)
+    {
+        $unit = $this->model->find($request->id);
+        $unit->name = $request->name;
+        $unit->status = $request->status;
+        $unit->save();
+
+        return $unit->only(['id','name','status']);
+    }
 }

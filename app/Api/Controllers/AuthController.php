@@ -22,7 +22,7 @@ class AuthController extends Controller
      *     path="/index.php/api/auth/login",
      *     tags={"Auth"},
      *     summary="登陆 第一步：验证用户信息",
-     *     operationId="auth-login",
+     *     operationId="auth_login",
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *          mediaType="application/x-www-form-urlencoded",
@@ -33,7 +33,7 @@ class AuthController extends Controller
      *             @OA\Property( property="password",description="密码", type="string"),
      *         )
      *     )),
-     *     @OA\Response(response=200, description="Successful"),
+     *     @OA\Response(response=200, description="Successful",@OA\JsonContent()),
      * )
      */
     public function login(LoginRequest $request)
@@ -47,7 +47,7 @@ class AuthController extends Controller
      *     path="/index.php/api/auth/login/card",
      *     tags={"Auth"},
      *     summary="登陆 第二步：验证用户与卡信息",
-     *     operationId="auth-login-with-card",
+     *     operationId="auth_login_with_card",
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *          mediaType="application/x-www-form-urlencoded",
@@ -56,7 +56,7 @@ class AuthController extends Controller
      *             @OA\Property( property="card_number",description="卡的编码", type="string"),
      *         )
      *     )),
-     *     @OA\Response(response=200, description="Successful")
+     *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
      * )
      */
     public function loginWithCard(LoginWithCardRequest $request)

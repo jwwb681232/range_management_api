@@ -15,9 +15,10 @@ class IndexTransformer
 
         foreach ($collection as $item) {
             $data[] = [
-                'id'=>$item->id,
-                'name'=>$item->name,
-                'created_at'=>$item->created_at->toDateTimeString(),
+                'id'         => $item->id,
+                'name'       => $item->name,
+                'status'     => $item->status,
+                'created_at' => $item->created_at->toDateTimeString(),
             ];
         }
 

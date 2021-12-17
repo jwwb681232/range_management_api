@@ -16,6 +16,13 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const STATUS_ACTIVE   = 'Active';
+    const STATUS_INACTIVE = 'Inactive';
+    public static $statusMap = [
+        self::STATUS_ACTIVE   => 1,
+        self::STATUS_INACTIVE => 0,
+    ];
+
     protected $table      = 'users';
     protected $primaryKey = 'id';
     protected $guarded    = ['_token'];

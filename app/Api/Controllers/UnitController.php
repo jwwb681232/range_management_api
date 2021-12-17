@@ -21,7 +21,7 @@ class UnitController extends Controller
      *     tags={"Common"},
      *     summary="单位列表",
      *     operationId="unit",
-     *     @OA\Response(response=200, description="success"),
+     *     @OA\Response(response=200, description="success",@OA\JsonContent()),
      * )
      */
     public function index(Request $request)

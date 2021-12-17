@@ -2,9 +2,10 @@
 
 namespace App\Api\Controllers\Admin;
 
+use App\Api\Requests\Admin\Unit\IndexRequest;
+use App\Api\Requests\Admin\Unit\UpdateRequest;
 use App\Api\Services\Admin\UnitService;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class UnitController extends Controller
 {
@@ -29,8 +30,32 @@ class UnitController extends Controller
      *     @OA\Response(response=200, description="success",@OA\JsonContent()),
      * )
      */
-    public function index(Request $request)
+    public function index(IndexRequest $request)
     {
         return apiReturn($this->service->index($request));
+    }
+
+    /**
+     * @OA\Put(
+     *     path="/index.php/api/admin/unit",
+     *     tags={"Admin"},
+     *     summary="编辑单位",
+     *     operationId="update_unit",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *          mediaType="application/x-www-form-urlencoded",
+     *          @OA\Schema(required={"id","name","status"},
+     *             @OA\Property( property="id",description="unit id", type="integer"),
+     *             @OA\Property( property="name",description="unit 名称", type="string"),
+     *             @OA\Property( property="status",description="状态（1：可以，0：禁用）", type="integer"),
+     *         )
+     *     )),
+     *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
+     * )
+     */
+    public function update(UpdateRequest $request)
+    {
+        return apiReturn($this->service->update($request));
     }
 }
