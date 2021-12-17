@@ -43,6 +43,25 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Card
+ *
+ * @property int $id
+ * @property string $number 卡编号
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Card newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Card newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Card query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Card whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Card whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Card whereNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Card whereUpdatedAt($value)
+ */
+	class Card extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Menu
  *
  * @property int $id
@@ -62,6 +81,25 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Menu whereUpdatedAt($value)
  */
 	class Menu extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Mode
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Mode newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Mode newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Mode query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Mode whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mode whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mode whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mode whereUpdatedAt($value)
+ */
+	class Mode extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -106,6 +144,27 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Unit
+ *
+ * @property int $id
+ * @property string $name
+ * @property int $status 状态(1:正常，0:禁用)
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit whereUpdatedAt($value)
+ */
+	class Unit extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
@@ -119,6 +178,9 @@ namespace App\Models{
  * @property int $status 状态(1:正常，0:禁用)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Card|null $card
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Mode[] $modes
+ * @property-read int|null $modes_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens

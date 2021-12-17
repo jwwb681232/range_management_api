@@ -61,6 +61,14 @@ class Handler extends ExceptionHandler
             ],422);
         }
 
+        if ($request->is('api/*') && $exception instanceof ValidationException) {
+            return response()->json([
+                'code'    => $exception->status,
+                'message' => current($exception->errors())[0],
+                'status'  => 'error',
+            ]);
+        }
+
         return parent::render($request, $exception);
     }
 
