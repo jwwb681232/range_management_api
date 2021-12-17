@@ -50,6 +50,16 @@ class UnitService
     /**
      * @param  Request  $request
      *
+     * @return array
+     */
+    public function store(Request $request)
+    {
+        return $this->model->create($request->all())->only(['id','name','status']);
+    }
+
+    /**
+     * @param  Request  $request
+     *
      * @return Unit|Unit[]|Collection|Model|null
      */
     public function update(Request $request)

@@ -4,6 +4,7 @@ namespace App\Api\Controllers\Admin;
 
 use App\Api\Requests\Admin\Unit\DestroyRequest;
 use App\Api\Requests\Admin\Unit\IndexRequest;
+use App\Api\Requests\Admin\Unit\StoreRequest;
 use App\Api\Requests\Admin\Unit\UpdateRequest;
 use App\Api\Services\Admin\UnitService;
 use App\Http\Controllers\Controller;
@@ -34,6 +35,29 @@ class UnitController extends Controller
     public function index(IndexRequest $request)
     {
         return apiReturn($this->service->index($request));
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/index.php/api/admin/unit",
+     *     tags={"Admin"},
+     *     summary="添加单位",
+     *     operationId="create_unit",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *          mediaType="application/x-www-form-urlencoded",
+     *          @OA\Schema(required={"name","status"},
+     *             @OA\Property( property="name",description="unit 名称", type="string"),
+     *             @OA\Property( property="status",description="状态（1：可以，0：禁用）", type="integer"),
+     *         )
+     *     )),
+     *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
+     * )
+     */
+    public function store(StoreRequest $request)
+    {
+        return apiReturn($this->service->store($request));
     }
 
     /**

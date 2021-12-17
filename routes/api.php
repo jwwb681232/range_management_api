@@ -29,6 +29,7 @@ Route::get('/unit',['App\Api\Controllers\UnitController','index']);
 
 Route::group(['middleware'=>'auth:sanctum'],function(){
     Route::get('/admin/unit',['App\Api\Controllers\Admin\UnitController','index']);
+    Route::post('/admin/unit',['App\Api\Controllers\Admin\UnitController','store']);
     Route::put('/admin/unit',['App\Api\Controllers\Admin\UnitController','update']);
     Route::delete('/admin/unit',['App\Api\Controllers\Admin\UnitController','destroy']);
 });
