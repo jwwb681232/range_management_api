@@ -49,13 +49,18 @@ namespace App\Models{
  * @property string $number 卡编号
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|Card newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Card newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Card onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Card query()
  * @method static \Illuminate\Database\Eloquent\Builder|Card whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Card whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Card whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Card whereNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Card whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Card withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Card withoutTrashed()
  */
 	class Card extends \Eloquent {}
 }
@@ -151,14 +156,19 @@ namespace App\Models{
  * @property int $status 状态(1:正常，0:禁用)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|Unit newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Unit newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Unit onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Unit query()
  * @method static \Illuminate\Database\Eloquent\Builder|Unit whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Unit whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Unit whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Unit whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Unit whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Unit withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Unit withoutTrashed()
  */
 	class Unit extends \Eloquent {}
 }
@@ -178,6 +188,7 @@ namespace App\Models{
  * @property int $status 状态(1:正常，0:禁用)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\Card|null $card
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Mode[] $modes
  * @property-read int|null $modes_count
@@ -188,9 +199,11 @@ namespace App\Models{
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCardId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
@@ -200,6 +213,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUnitId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|User withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  */
 	class User extends \Eloquent {}
 }

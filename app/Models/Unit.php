@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Unit extends Model
 {
+    use SoftDeletes;
+
     const STATUS_ACTIVE   = 'Active';
     const STATUS_INACTIVE = 'Inactive';
     public static $statusMap = [
