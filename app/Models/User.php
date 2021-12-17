@@ -17,11 +17,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
 
-    const STATUS_ACTIVE   = 'Active';
-    const STATUS_INACTIVE = 'Inactive';
+    const STATUS_ACTIVE   = 1;
+    const STATUS_INACTIVE = 0;
     public static $statusMap = [
-        self::STATUS_ACTIVE   => 1,
-        self::STATUS_INACTIVE => 0,
+        self::STATUS_ACTIVE   => 'Active',
+        self::STATUS_INACTIVE => 'Inactive',
     ];
 
     protected $table      = 'users';
@@ -38,5 +38,10 @@ class User extends Authenticatable
     public function card()
     {
         return $this->hasOne(Card::class,'id','card_id');
+    }
+
+    public function unit()
+    {
+        return $this->hasOne(Unit::class,'id','unit_id');
     }
 }

@@ -9,11 +9,11 @@ class Unit extends Model
 {
     use SoftDeletes;
 
-    const STATUS_ACTIVE   = 'Active';
-    const STATUS_INACTIVE = 'Inactive';
+    const STATUS_ACTIVE   = 1;
+    const STATUS_INACTIVE = 0;
     public static $statusMap = [
-        self::STATUS_ACTIVE   => 1,
-        self::STATUS_INACTIVE => 0,
+        self::STATUS_ACTIVE   => 'Active',
+        self::STATUS_INACTIVE => 'Inactive',
     ];
 
     protected $table = 'units';

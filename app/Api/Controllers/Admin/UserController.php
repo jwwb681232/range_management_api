@@ -2,28 +2,28 @@
 
 namespace App\Api\Controllers\Admin;
 
-use App\Api\Requests\Admin\Unit\DestroyRequest;
-use App\Api\Requests\Admin\Unit\IndexRequest;
-use App\Api\Requests\Admin\Unit\StoreRequest;
-use App\Api\Requests\Admin\Unit\UpdateRequest;
-use App\Api\Services\Admin\UnitService;
+use App\Api\Requests\Admin\User\DestroyRequest;
+use App\Api\Requests\Admin\User\IndexRequest;
+use App\Api\Requests\Admin\User\StoreRequest;
+use App\Api\Requests\Admin\User\UpdateRequest;
+use App\Api\Services\Admin\UserService;
 use App\Http\Controllers\Controller;
 
-class UnitController extends Controller
+class UserController extends Controller
 {
-    public UnitService $service;
+    public UserService $service;
 
     public function __construct()
     {
-        $this->service = new UnitService();
+        $this->service = new UserService();
     }
 
     /**
      * @OA\Get(
-     *     path="/index.php/api/admin/unit",
-     *     tags={"Admin/Unit"},
-     *     summary="单位列表",
-     *     operationId="unit",
+     *     path="/index.php/api/admin/user",
+     *     tags={"Admin/User"},
+     *     summary="用户列表",
+     *     operationId="user",
      *     security={ { "bearerAuth":{}}},
      *     @OA\Parameter(in="query",name="keyword",description="搜索关键字",schema={"type":"string"},required=false),
      *     @OA\Parameter(in="query",name="status",description="状态",schema={"type":"integer"},required=false),
@@ -39,16 +39,16 @@ class UnitController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/index.php/api/admin/unit",
-     *     tags={"Admin/Unit"},
-     *     summary="添加单位",
-     *     operationId="create_unit",
+     *     path="/index.php/api/admin/user",
+     *     tags={"Admin/User"},
+     *     summary="添加用户 //todo",
+     *     operationId="create_user",
      *     security={ { "bearerAuth":{}}},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *          mediaType="application/x-www-form-urlencoded",
      *          @OA\Schema(required={"name","status"},
-     *             @OA\Property( property="name",description="unit 名称", type="string"),
+     *             @OA\Property( property="name",description="user 名称", type="string"),
      *             @OA\Property( property="status",description="状态（1：可以，0：禁用）", type="integer"),
      *         )
      *     )),
@@ -62,17 +62,17 @@ class UnitController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/index.php/api/admin/unit",
-     *     tags={"Admin/Unit"},
-     *     summary="编辑单位",
-     *     operationId="update_unit",
+     *     path="/index.php/api/admin/user",
+     *     tags={"Admin/User"},
+     *     summary="编辑用户 //todo",
+     *     operationId="update_user",
      *     security={ { "bearerAuth":{}}},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *          mediaType="application/x-www-form-urlencoded",
      *          @OA\Schema(required={"id","name","status"},
-     *             @OA\Property( property="id",description="unit id", type="integer"),
-     *             @OA\Property( property="name",description="unit 名称", type="string"),
+     *             @OA\Property( property="id",description="user id", type="integer"),
+     *             @OA\Property( property="name",description="user 名称", type="string"),
      *             @OA\Property( property="status",description="状态（1：可以，0：禁用）", type="integer"),
      *         )
      *     )),
@@ -86,16 +86,16 @@ class UnitController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/index.php/api/admin/unit",
-     *     tags={"Admin/Unit"},
-     *     summary="删除单位",
-     *     operationId="delete_unit",
+     *     path="/index.php/api/admin/user",
+     *     tags={"Admin/User"},
+     *     summary="删除用户 //todo",
+     *     operationId="delete_user",
      *     security={ { "bearerAuth":{}}},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *          mediaType="application/x-www-form-urlencoded",
      *          @OA\Schema(required={"id"},
-     *             @OA\Property( property="id",description="unit id", type="integer"),
+     *             @OA\Property( property="id",description="user id", type="integer"),
      *         )
      *     )),
      *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
