@@ -24,8 +24,21 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'   => 'required|string|max:64|unique:users,name',
-            'status' => 'required|in:0,1',
+            'name'     => 'required|string|max:64|unique:users,name',
+            'unit_id'  => 'required|integer|max:64|exists:units,id',
+            'mode_id'  => 'required|string',
+            'password' => 'required|string|confirmed|min:6|max:32',
+            'status'   => 'required|in:0,1',
         ];
+    }
+
+    /**
+     * @param $validator
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $this->request->set('mode_ids',explode(',',$this->request->get('mode_id')));
+        });
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Api\Services\Admin;
 
 use App\Models\User;
+use Faker\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
@@ -50,11 +51,21 @@ class UserService
     /**
      * @param  Request  $request
      *
-     * @return array
+     * @return Model|User
      */
     public function store(Request $request)
     {
-        return $this->model->create($request->all())->only(['id','name','status']);
+        $user = $this->model->create([
+            'name'     => $request->name,
+            'email'    => sprintf("%s", time().'_'.Factory::create()->email),
+            'password' => bcrypt($request->password),
+            'unit_id'  => $request->unit_id,
+            'status'   => $request->status,
+        ]);
+
+        $user->modes()->sync($request->mode_ids);
+
+        return $user;
     }
 
     /**
@@ -65,11 +76,12 @@ class UserService
     public function update(Request $request)
     {
         $user = $this->model->find($request->id);
-        $user->name = $request->name;
-        $user->status = $request->status;
-        $user->save();
 
-        return $user->only(['id','name','status']);
+        $user->fill($request->only(['name','unit_id','status']))->save();
+
+        $user->modes()->sync($request->mode_ids);
+
+        return $user;
     }
 
     /**

@@ -41,15 +41,19 @@ class UserController extends Controller
      * @OA\Post(
      *     path="/index.php/api/admin/user",
      *     tags={"Admin/User"},
-     *     summary="添加用户 //todo",
+     *     summary="添加用户",
      *     operationId="create_user",
      *     security={ { "bearerAuth":{}}},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *          mediaType="application/x-www-form-urlencoded",
-     *          @OA\Schema(required={"name","status"},
-     *             @OA\Property( property="name",description="user 名称", type="string"),
-     *             @OA\Property( property="status",description="状态（1：可以，0：禁用）", type="integer"),
+     *          @OA\Schema(required={"name","unit_id","mode_id","password","password_confirmation","status"},
+     *             @OA\Property( property="name",description="用户名称", type="string"),
+     *             @OA\Property( property="unit_id",description="单位ID", type="integer"),
+     *             @OA\Property( property="mode_id",description="模型角色Id(多个以,分隔)", type="array", @OA\Items(type="string")),
+     *             @OA\Property( property="password",description="密码", type="string"),
+     *             @OA\Property( property="password_confirmation",description="确认密码", type="string"),
+     *             @OA\Property( property="status",description="状态（1：可以，0：禁用）", type="integer",enum={1,0}),
      *         )
      *     )),
      *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
@@ -64,16 +68,18 @@ class UserController extends Controller
      * @OA\Put(
      *     path="/index.php/api/admin/user",
      *     tags={"Admin/User"},
-     *     summary="编辑用户 //todo",
+     *     summary="编辑用户",
      *     operationId="update_user",
      *     security={ { "bearerAuth":{}}},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *          mediaType="application/x-www-form-urlencoded",
-     *          @OA\Schema(required={"id","name","status"},
-     *             @OA\Property( property="id",description="user id", type="integer"),
-     *             @OA\Property( property="name",description="user 名称", type="string"),
-     *             @OA\Property( property="status",description="状态（1：可以，0：禁用）", type="integer"),
+     *          @OA\Schema(required={"id","name","unit_id","mode_id","status"},
+     *             @OA\Property( property="id",description="用户id", type="integer"),
+     *             @OA\Property( property="name",description="用户名称", type="string"),
+     *             @OA\Property( property="unit_id",description="单位ID", type="integer"),
+     *             @OA\Property( property="mode_id",description="模型角色Id(多个以,分隔)", type="array", @OA\Items(type="string")),
+     *             @OA\Property( property="status",description="状态（1：可以，0：禁用）", type="integer",enum={1,0}),
      *         )
      *     )),
      *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
@@ -88,7 +94,7 @@ class UserController extends Controller
      * @OA\Delete(
      *     path="/index.php/api/admin/user",
      *     tags={"Admin/User"},
-     *     summary="删除用户 //todo",
+     *     summary="删除用户",
      *     operationId="delete_user",
      *     security={ { "bearerAuth":{}}},
      *     @OA\RequestBody(

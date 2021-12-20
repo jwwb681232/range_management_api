@@ -24,9 +24,21 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'     => 'required|string|exists:users,id',
-            'name'   => 'required|string|max:64|unique:users,name,'.request('id'),
-            'status' => 'required|in:0,1',
+            'id'     => 'required|integer|exists:users,id',
+            'name'     => 'required|string|max:64|unique:users,name,'.request('id'),
+            'unit_id'  => 'required|integer|max:64|exists:units,id',
+            'mode_id'  => 'required|string',
+            'status'   => 'required|in:0,1',
         ];
+    }
+
+    /**
+     * @param $validator
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $this->request->set('mode_ids',explode(',',$this->request->get('mode_id')));
+        });
     }
 }
