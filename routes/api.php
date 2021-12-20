@@ -38,4 +38,5 @@ Route::group(['middleware'=>'auth:sanctum'],function(){
     Route::post('/admin/user',['App\Api\Controllers\Admin\UserController','store']);
     Route::put('/admin/user',['App\Api\Controllers\Admin\UserController','update']);
     Route::delete('/admin/user',['App\Api\Controllers\Admin\UserController','destroy']);
+    Route::put('/admin/user/password',['App\Api\Controllers\Admin\UserController','changePassword']);
 });

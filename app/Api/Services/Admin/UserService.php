@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use App\Api\Transformers\Admin\User\IndexTransformer;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class UserService
 {
@@ -65,7 +67,7 @@ class UserService
 
         $user->modes()->sync($request->mode_ids);
 
-        return $user;
+        return $user->only(['id','name']);
     }
 
     /**
@@ -81,7 +83,7 @@ class UserService
 
         $user->modes()->sync($request->mode_ids);
 
-        return $user;
+        return $user->only(['id','name']);
     }
 
     /**
@@ -92,5 +94,24 @@ class UserService
     public function destroy($id)
     {
         return $this->model->destroy($id);
+    }
+
+    /**
+     * @param  Request  $request
+     *
+     * @return User|User[]|array|Collection|Model|null
+     * @throws ValidationException
+     */
+    public function changePassword(Request $request)
+    {
+        $user = $this->model->find($request->id);
+        // 密码不正确
+        if ( ! Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages(['name' => ['The provided credentials are incorrect']]);
+        }
+
+        $user->fill(['password'=>bcrypt($request->password)])->save();
+
+        return $user->only(['id','name']);
     }
 }

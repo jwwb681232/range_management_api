@@ -39,6 +39,10 @@ class AuthService
             throw ValidationException::withMessages(['name' => ['The provided credentials are incorrect']]);
         }
 
+        if ($user->status != User::STATUS_ACTIVE){
+            throw ValidationException::withMessages(['name' => ['Account to be disabled, please contact the administrator']]);
+        }
+
         return LoginTransformer::transform($user);
     }
 

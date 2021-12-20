@@ -2,6 +2,7 @@
 
 namespace App\Api\Controllers\Admin;
 
+use App\Api\Requests\Admin\User\ChangePasswordRequest;
 use App\Api\Requests\Admin\User\DestroyRequest;
 use App\Api\Requests\Admin\User\IndexRequest;
 use App\Api\Requests\Admin\User\StoreRequest;
@@ -110,5 +111,30 @@ class UserController extends Controller
     public function destroy(DestroyRequest $request)
     {
         return apiReturn($this->service->destroy($request->id));
+    }
+
+    /**
+     * @OA\Put(
+     *     path="/index.php/api/admin/user/password",
+     *     tags={"Admin/User"},
+     *     summary="修改密码",
+     *     operationId="user_password",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *          mediaType="application/x-www-form-urlencoded",
+     *          @OA\Schema(required={"id","old_password","password","password_confirmation"},
+     *             @OA\Property( property="id",description="用户id", type="integer"),
+     *             @OA\Property( property="old_password",description="旧密码", type="string"),
+     *             @OA\Property( property="password",description="新密码", type="string"),
+     *             @OA\Property( property="password_confirmation",description="确认新密码", type="string"),
+     *         )
+     *     )),
+     *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
+     * )
+     */
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        return apiReturn($this->service->changePassword($request));
     }
 }
