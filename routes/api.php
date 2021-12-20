@@ -29,14 +29,20 @@ Route::get('/mode',['App\Api\Controllers\ModeController','index']);
 //Route::get('/admin/unit',['App\Api\Controllers\Admin\UnitController','index']);
 
 Route::group(['middleware'=>'auth:sanctum'],function(){
-    Route::get('/admin/unit',['App\Api\Controllers\Admin\UnitController','index']);
-    Route::post('/admin/unit',['App\Api\Controllers\Admin\UnitController','store']);
-    Route::put('/admin/unit',['App\Api\Controllers\Admin\UnitController','update']);
-    Route::delete('/admin/unit',['App\Api\Controllers\Admin\UnitController','destroy']);
 
     Route::get('/admin/user',['App\Api\Controllers\Admin\UserController','index']);
     Route::post('/admin/user',['App\Api\Controllers\Admin\UserController','store']);
     Route::put('/admin/user',['App\Api\Controllers\Admin\UserController','update']);
     Route::delete('/admin/user',['App\Api\Controllers\Admin\UserController','destroy']);
     Route::put('/admin/user/password',['App\Api\Controllers\Admin\UserController','changePassword']);
+
+    Route::get('/admin/unit',['App\Api\Controllers\Admin\UnitController','index']);
+    Route::post('/admin/unit',['App\Api\Controllers\Admin\UnitController','store']);
+    Route::put('/admin/unit',['App\Api\Controllers\Admin\UnitController','update']);
+    Route::delete('/admin/unit',['App\Api\Controllers\Admin\UnitController','destroy']);
+
+    Route::get('/admin/card',['App\Api\Controllers\Admin\CardController','index']);
+    Route::post('/admin/card',['App\Api\Controllers\Admin\CardController','store']);
+    Route::put('/admin/card',['App\Api\Controllers\Admin\CardController','update']);
+    Route::delete('/admin/card',['App\Api\Controllers\Admin\CardController','destroy']);
 });
