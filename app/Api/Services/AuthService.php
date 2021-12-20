@@ -2,13 +2,11 @@
 
 namespace App\Api\Services;
 
-use App\Api\Transformers\Auth\LoginTransformer;
-use App\CacheKeys;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use App\Api\Transformers\Auth\LoginTransformer;
 
 class AuthService
 {
