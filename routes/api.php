@@ -28,7 +28,7 @@ Route::get('/mode',['App\Api\Controllers\ModeController','index']);
 
 //Route::get('/admin/unit',['App\Api\Controllers\Admin\UnitController','index']);
 
-Route::group(['middleware'=>'auth:sanctum'],function(){
+Route::group(['middleware'=>['auth:sanctum','auth.user.mode']],function(){
 
     Route::prefix('/admin')->group(function(){
         Route::get('/user/{id}',['App\Api\Controllers\Admin\UserController','show']);

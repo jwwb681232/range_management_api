@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
@@ -68,6 +69,14 @@ class Handler extends ExceptionHandler
                 'message' => $exception->getMessage(),
                 'status'  => 'error',
             ],404);
+        }
+
+        if ($request->is('api/*') && $exception instanceof AuthenticationException) {
+            return response()->json([
+                'code'    => 403,
+                'message' => $exception->getMessage(),
+                'status'  => 'error',
+            ],403);
         }
 
         if ($request->is('api/*') && $exception instanceof ValidationException) {

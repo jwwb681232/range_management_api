@@ -55,6 +55,8 @@ class AuthService
     {
         $request->user->tokens()->delete();
 
-        return $request->user->createToken($request->user->name)->plainTextToken;
+        $abilities = $request->user->modes->pluck('name')->toArray();
+
+        return $request->user->createToken($request->user->name,$abilities)->plainTextToken;
     }
 }
