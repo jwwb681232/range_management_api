@@ -2,8 +2,10 @@
 
 namespace App\Api\Services\Admin;
 
+use App\Models\Card;
 use App\Models\User;
 use Faker\Factory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
@@ -18,6 +20,17 @@ class UserService
     public function __construct()
     {
         $this->model = new User();
+    }
+
+    /**
+     * @param  Request  $request
+     *
+     * @return Builder|Collection|Model|null
+     */
+    public function show(Request $request)
+    {
+        return $this->model->with(['unit:id,name','card:id,number','modes:id,name'])
+            ->findOrFail($request->id,['id','name','unit_id','card_id','status','created_at']);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Api\Services\Admin;
 
 use App\Models\Card;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
@@ -16,6 +17,19 @@ class CardService
     public function __construct()
     {
         $this->model = new Card();
+    }
+
+    /**
+     * @param  Request  $request
+     *
+     * @return Builder|Collection|Model|null
+     */
+    public function show(Request $request)
+    {
+        return $this->model->with([
+                'user'=>fn($query)=>$query->with(['unit:id,name','card:id,number','modes:id,name'])->select(['id','name','unit_id','card_id','status','created_at'])
+            ])
+            ->findOrFail($request->id,['id','number','created_at']);
     }
 
     /**
@@ -73,11 +87,15 @@ class CardService
     public function update(Request $request)
     {
         $card = $this->model->find($request->id);
-        $card->name = $request->name;
-        $card->status = $request->status;
+        $card->number = $request->number;
         $card->save();
 
-        return $card->only(['id','name','status']);
+        if ($request->user_id){
+            User::whereCardId($request->id)->update(['card_id'=>0]);
+            User::whereId($request->user_id)->update(['card_id'=>$request->id]);
+        }
+
+        return $card->only(['id','number']);
     }
 
     /**
@@ -87,6 +105,7 @@ class CardService
      */
     public function destroy($id)
     {
+        User::whereCardId($id)->update(['card_id'=>0]);
         return $this->model->destroy($id);
     }
 }

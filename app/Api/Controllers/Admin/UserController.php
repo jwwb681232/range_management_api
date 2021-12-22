@@ -5,10 +5,12 @@ namespace App\Api\Controllers\Admin;
 use App\Api\Requests\Admin\User\ChangePasswordRequest;
 use App\Api\Requests\Admin\User\DestroyRequest;
 use App\Api\Requests\Admin\User\IndexRequest;
+use App\Api\Requests\Admin\User\ShowRequest;
 use App\Api\Requests\Admin\User\StoreRequest;
 use App\Api\Requests\Admin\User\UpdateRequest;
 use App\Api\Services\Admin\UserService;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -17,6 +19,22 @@ class UserController extends Controller
     public function __construct()
     {
         $this->service = new UserService();
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/index.php/api/admin/user/{id}",
+     *     tags={"Admin/User"},
+     *     summary="用户详情",
+     *     operationId="user_detail",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\Parameter(in="path",name="id",description="用户id",schema={"type":"integer"},required=true),
+     *     @OA\Response(response=200, description="success",@OA\JsonContent()),
+     * )
+     */
+    public function show(Request $request)
+    {
+        return apiReturn($this->service->show($request));
     }
 
     /**
