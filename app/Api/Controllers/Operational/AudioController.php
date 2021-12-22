@@ -18,7 +18,7 @@ class AudioController extends Controller
     /**
      * @OA\Get(
      *     path="/index.php/api/operational/audio",
-     *     tags={"Operational/Unit"},
+     *     tags={"Operational/Audio"},
      *     summary="音频列表",
      *     operationId="audio",
      *     security={ { "bearerAuth":{}}},

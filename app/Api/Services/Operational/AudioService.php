@@ -4,7 +4,7 @@ namespace App\Api\Services\Operational;
 
 use App\Models\Audio;
 use Illuminate\Http\Request;
-//use App\Api\Transformers\Operational\Audio\IndexTransformer;
+use App\Api\Transformers\Operational\Audio\IndexTransformer;
 
 class AudioService
 {
@@ -22,7 +22,9 @@ class AudioService
      */
     public function index(Request $request)
     {
-        return $this->model->get();
+        return IndexTransformer::transform(
+            $this->model->get()
+        );
     }
 
 }

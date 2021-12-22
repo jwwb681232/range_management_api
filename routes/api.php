@@ -30,21 +30,27 @@ Route::get('/mode',['App\Api\Controllers\ModeController','index']);
 
 Route::group(['middleware'=>'auth:sanctum'],function(){
 
-    Route::get('/admin/user/{id}',['App\Api\Controllers\Admin\UserController','show']);
-    Route::get('/admin/user',['App\Api\Controllers\Admin\UserController','index']);
-    Route::post('/admin/user',['App\Api\Controllers\Admin\UserController','store']);
-    Route::put('/admin/user',['App\Api\Controllers\Admin\UserController','update']);
-    Route::delete('/admin/user',['App\Api\Controllers\Admin\UserController','destroy']);
-    Route::put('/admin/user/password',['App\Api\Controllers\Admin\UserController','changePassword']);
+    Route::prefix('/admin')->group(function(){
+        Route::get('/user/{id}',['App\Api\Controllers\Admin\UserController','show']);
+        Route::get('/user',['App\Api\Controllers\Admin\UserController','index']);
+        Route::post('/user',['App\Api\Controllers\Admin\UserController','store']);
+        Route::put('/user',['App\Api\Controllers\Admin\UserController','update']);
+        Route::delete('/user',['App\Api\Controllers\Admin\UserController','destroy']);
+        Route::put('/user/password',['App\Api\Controllers\Admin\UserController','changePassword']);
 
-    Route::get('/admin/unit',['App\Api\Controllers\Admin\UnitController','index']);
-    Route::post('/admin/unit',['App\Api\Controllers\Admin\UnitController','store']);
-    Route::put('/admin/unit',['App\Api\Controllers\Admin\UnitController','update']);
-    Route::delete('/admin/unit',['App\Api\Controllers\Admin\UnitController','destroy']);
+        Route::get('/unit',['App\Api\Controllers\Admin\UnitController','index']);
+        Route::post('/unit',['App\Api\Controllers\Admin\UnitController','store']);
+        Route::put('/unit',['App\Api\Controllers\Admin\UnitController','update']);
+        Route::delete('/unit',['App\Api\Controllers\Admin\UnitController','destroy']);
 
-    Route::get('/admin/card/{id}',['App\Api\Controllers\Admin\CardController','show']);
-    Route::get('/admin/card',['App\Api\Controllers\Admin\CardController','index']);
-    Route::post('/admin/card',['App\Api\Controllers\Admin\CardController','store']);
-    Route::put('/admin/card',['App\Api\Controllers\Admin\CardController','update']);
-    Route::delete('/admin/card',['App\Api\Controllers\Admin\CardController','destroy']);
+        Route::get('/card/{id}',['App\Api\Controllers\Admin\CardController','show']);
+        Route::get('/card',['App\Api\Controllers\Admin\CardController','index']);
+        Route::post('/card',['App\Api\Controllers\Admin\CardController','store']);
+        Route::put('/card',['App\Api\Controllers\Admin\CardController','update']);
+        Route::delete('/card',['App\Api\Controllers\Admin\CardController','destroy']);
+    });
+
+    Route::prefix('/operational')->group(function (){
+        Route::get('/audio',['App\Api\Controllers\Operational\AudioController','index']);
+    });
 });
