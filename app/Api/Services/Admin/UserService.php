@@ -41,6 +41,7 @@ class UserService
     public function index(Request $request)
     {
         $keyword = $request->input('keyword');
+        $modeId  = $request->input('mode_id');
         $status  = $request->input('status');
 
         $page    = $request->input('page', 1);
@@ -48,6 +49,7 @@ class UserService
         $offset  = ($page - 1) * $limit;
 
         $condition = $this->model
+            ->when(is_numeric($modeId), fn($query) => $query->whereHas('modes', fn($subQuery) => $subQuery->whereId($modeId)))
             ->when(is_numeric($status), fn($query) => $query->whereStatus($status))
             ->when($keyword,fn($query)=>$query->where('name','LIKE',"%$keyword%"));
 

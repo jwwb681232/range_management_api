@@ -45,6 +45,7 @@ class UserController extends Controller
      *     operationId="user",
      *     security={ { "bearerAuth":{}}},
      *     @OA\Parameter(in="query",name="keyword",description="搜索关键字",schema={"type":"string"},required=false),
+     *     @OA\Parameter(in="query",name="mode_id",description="模型角色id",schema={"type":"integer"},required=false),
      *     @OA\Parameter(in="query",name="status",description="状态",schema={"type":"integer"},required=false),
      *     @OA\Parameter(in="query",name="page",description="当前页",schema={"type":"integer"},required=false),
      *     @OA\Parameter(in="query",name="limit",description="每页条数",schema={"type":"integer"},required=false),
