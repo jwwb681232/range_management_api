@@ -15,6 +15,7 @@ class IndexTransformer
             $data[] = [
                 'id'         => $item->id,
                 'name'       => $item->name,
+                'nric'       => $item->nric,
                 'unit'       => $item->unit->name,
                 'modes'      => $item->modes->pluck('name')->join('/'),
                 'status'     => User::$statusMap[$item->status],

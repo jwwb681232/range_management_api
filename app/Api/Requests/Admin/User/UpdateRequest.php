@@ -26,6 +26,7 @@ class UpdateRequest extends FormRequest
         return [
             'id'     => 'required|integer|exists:users,id',
             'name'     => 'required|string|max:64|unique:users,name,'.request('id'),
+            'nric'     => 'required|string|max:64|unique:users,nric,'.request('id'),
             'unit_id'  => 'required|integer|max:64|exists:units,id',
             'mode_id'  => 'required|string',
             'status'   => 'required|in:0,1',

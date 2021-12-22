@@ -67,8 +67,9 @@ class UserController extends Controller
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *          mediaType="application/x-www-form-urlencoded",
-     *          @OA\Schema(required={"name","unit_id","mode_id","password","password_confirmation","status"},
+     *          @OA\Schema(required={"name","nric","unit_id","mode_id","password","password_confirmation","status"},
      *             @OA\Property( property="name",description="用户名称", type="string"),
+     *             @OA\Property( property="nric",description="用户名称", type="string"),
      *             @OA\Property( property="unit_id",description="单位ID", type="integer"),
      *             @OA\Property( property="mode_id",description="模型角色Id(多个以,分隔)", type="array", @OA\Items(type="string")),
      *             @OA\Property( property="password",description="密码", type="string"),
@@ -94,9 +95,10 @@ class UserController extends Controller
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *          mediaType="application/x-www-form-urlencoded",
-     *          @OA\Schema(required={"id","name","unit_id","mode_id","status"},
+     *          @OA\Schema(required={"id","name","nric","unit_id","mode_id","status"},
      *             @OA\Property( property="id",description="用户id", type="integer"),
      *             @OA\Property( property="name",description="用户名称", type="string"),
+     *             @OA\Property( property="nric",description="用户名称", type="string"),
      *             @OA\Property( property="unit_id",description="单位ID", type="integer"),
      *             @OA\Property( property="mode_id",description="模型角色Id(多个以,分隔)", type="array", @OA\Items(type="string")),
      *             @OA\Property( property="status",description="状态（1：可以，0：禁用）", type="integer",enum={1,0}),

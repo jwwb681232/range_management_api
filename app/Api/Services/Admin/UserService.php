@@ -30,7 +30,7 @@ class UserService
     public function show(Request $request)
     {
         return $this->model->with(['unit:id,name','card:id,number','modes:id,name'])
-            ->findOrFail($request->id,['id','name','unit_id','card_id','status','created_at']);
+            ->findOrFail($request->id,['id','name','nric','unit_id','card_id','status','created_at']);
     }
 
     /**
@@ -51,7 +51,7 @@ class UserService
         $condition = $this->model
             ->when(is_numeric($modeId), fn($query) => $query->whereHas('modes', fn($subQuery) => $subQuery->whereId($modeId)))
             ->when(is_numeric($status), fn($query) => $query->whereStatus($status))
-            ->when($keyword,fn($query)=>$query->where('name','LIKE',"%$keyword%"));
+            ->when($keyword,fn($query)=>$query->where(fn($subQuery) => $subQuery->where('name','LIKE',"%$keyword%")->orWhere('nric','LIKE',"%$keyword%")));
 
         $data['count']     = $condition->count();
         $data['page']      = $page;
@@ -74,6 +74,7 @@ class UserService
     {
         $user = $this->model->create([
             'name'     => $request->name,
+            'nric'     => $request->nric,
             'email'    => sprintf("%s", time().'_'.Factory::create()->email),
             'password' => bcrypt($request->password),
             'unit_id'  => $request->unit_id,
@@ -94,11 +95,11 @@ class UserService
     {
         $user = $this->model->find($request->id);
 
-        $user->fill($request->only(['name','unit_id','status']))->save();
+        $user->fill($request->only(['name','nric','unit_id','status']))->save();
 
         $user->modes()->sync($request->mode_ids);
 
-        return $user->only(['id','name']);
+        return $user->only(['id','name','nric']);
     }
 
     /**
@@ -127,6 +128,6 @@ class UserService
 
         $user->fill(['password'=>bcrypt($request->password)])->save();
 
-        return $user->only(['id','name']);
+        return $user->only(['id','name','nric']);
     }
 }

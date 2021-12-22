@@ -25,6 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name'     => 'required|string|max:64|unique:users,name',
+            'nric'     => 'required|string|max:64|unique:users,nric',
             'unit_id'  => 'required|integer|max:64|exists:units,id',
             'mode_id'  => 'required|string',
             'password' => 'required|string|confirmed|min:6|max:32',
