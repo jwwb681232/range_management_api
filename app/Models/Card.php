@@ -9,7 +9,7 @@ class Card extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'Cards';
+    protected $table = 'cards';
     protected $primaryKey = 'id';
     protected $guarded = ['_token'];
 

@@ -43,6 +43,33 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Audio
+ *
+ * @property int $id
+ * @property string $title 音频名称
+ * @property string $path 音频存放地址
+ * @property int $size 字节
+ * @property int $duration 时长(秒)
+ * @property int $type 类型(1:Alarm,2:Explosion)
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Audio newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Audio newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Audio query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Audio whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Audio whereDuration($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Audio whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Audio wherePath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Audio whereSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Audio whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Audio whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Audio whereUpdatedAt($value)
+ */
+	class Audio extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Card
  *
  * @property int $id
@@ -50,6 +77,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Card newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Card newQuery()
  * @method static \Illuminate\Database\Query\Builder|Card onlyTrashed()
@@ -179,6 +207,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
+ * @property string $nric 身份证号
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
@@ -196,6 +225,7 @@ namespace App\Models{
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
+ * @property-read \App\Models\Unit|null $unit
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -208,6 +238,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereNric($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereStatus($value)
