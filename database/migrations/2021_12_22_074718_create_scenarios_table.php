@@ -15,6 +15,9 @@ class CreateScenariosTable extends Migration
     {
         Schema::create('scenarios', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->comment('场景名称');
+            $table->string('description')->comment('描述');
+            $table->unsignedTinyInteger('type')->comment('训练类型(1:Group 组,2:Individual 个人)');
             $table->timestamps();
         });
     }
