@@ -122,7 +122,7 @@ class UserService
     {
         $user = $this->model->find($request->id);
         // 密码不正确
-        if ( ! Hash::check($request->password, $user->password)) {
+        if ( ! Hash::check($request->old_password, $user->password)) {
             throw ValidationException::withMessages(['name' => ['The provided credentials are incorrect']]);
         }
 
