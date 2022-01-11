@@ -81,7 +81,7 @@ class UserService
             'status'   => $request->status,
         ]);
 
-        $user->modes()->sync($request->mode_ids);
+        $user->modes()->sync(explode(',',$request->mode_ids));
 
         return $user->only(['id','name']);
     }
@@ -97,7 +97,7 @@ class UserService
 
         $user->fill($request->only(['name','nric','unit_id','status']))->save();
 
-        $user->modes()->sync($request->mode_ids);
+        $user->modes()->sync(explode(',',$request->mode_ids));
 
         return $user->only(['id','name','nric']);
     }
