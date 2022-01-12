@@ -19,7 +19,7 @@ class ScenarioService
      */
     public function index()
     {
-        return $this->model->get();
+        return $this->model->with(['rtsScript','audios'])->get();
     }
 
 }

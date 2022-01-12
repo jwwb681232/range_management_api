@@ -15,7 +15,7 @@ class IndexTransformer
                 'id'          => $item->id,
                 'title'       => $item->title,
                 'description' => $item->description,
-                'path'        => asset($item->path),
+                'path'        => $item->path,
                 'duration'    => $item->duration,
                 'type'        => $item->type,
             ];

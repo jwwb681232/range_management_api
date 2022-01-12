@@ -22,9 +22,7 @@ class AudioService
      */
     public function index(Request $request)
     {
-        return IndexTransformer::transform(
-            $this->model->get()
-        );
+        return $this->model->get(['id', 'title', 'description', 'path', 'duration', 'type']);
     }
 
 }

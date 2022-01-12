@@ -17,6 +17,6 @@ class Scenario extends Model
 
     public function audios()
     {
-        return $this->belongsToMany(Audio::class,'scenario_audio','scenario_id','audio_id');
+        return $this->belongsToMany(Audio::class,'scenario_audio','scenario_id','audio_id')->withPivot('start_at', 'duration');
     }
 }
