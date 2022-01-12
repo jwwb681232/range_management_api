@@ -3,6 +3,7 @@
 namespace App\Api\Services\Operational;
 
 use App\Models\Scenario;
+use Illuminate\Http\Request;
 
 class ScenarioService
 {
@@ -22,4 +23,8 @@ class ScenarioService
         return $this->model->with(['rtsScript','audios'])->get();
     }
 
+    public function store(Request $request)
+    {
+        return $request->all();
+    }
 }
