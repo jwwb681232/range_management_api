@@ -19,6 +19,7 @@ class IndexTransformer
                 'number'     => $item->number,
                 'user'       => $item->user
                     ? [
+                        'name'  => $item->user?->name,
                         'unit'  => $item->user?->unit->name,
                         'modes' => collect($item->user?->modes)->pluck('name')->join('/'),
                     ]

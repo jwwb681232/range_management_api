@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateScenariosTable extends Migration
+class CreateTacfScriptsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateScenariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('scenarios', function (Blueprint $table) {
+        Schema::create('tacf_scripts', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->comment('场景名称');
-            $table->string('description')->comment('描述');
-            $table->unsignedTinyInteger('type')->comment('训练类型(1:Group 组,2:Individual 个人)');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ class CreateScenariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scenarios');
+        Schema::dropIfExists('tacf_scripts');
     }
 }
