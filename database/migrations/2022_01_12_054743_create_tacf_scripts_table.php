@@ -15,6 +15,13 @@ class CreateTacfScriptsTable extends Migration
     {
         Schema::create('tacf_scripts', function (Blueprint $table) {
             $table->id();
+            $table->string('range_name');
+            $table->unsignedInteger('index')->comment('脚本index');
+            $table->string('name')->comment('脚本名称');
+            $table->unsignedInteger('scenario_id')->comment('场景id');
+            $table->string('scenario_name')->comment('场景名称');
+            $table->json('steps')->comment('步骤');
+            $table->json('participants');
             $table->timestamps();
         });
     }
