@@ -14,8 +14,12 @@ class CreateScenarioAudioTable extends Migration
     public function up()
     {
         Schema::create('scenario_audio', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unsignedInteger('scenario_id');
+            $table->unsignedInteger('audio_id');
+            $table->unsignedInteger("start_at")->default(0)->comment('从哪一秒开始播放');
+            $table->unsignedInteger("duration")->default(0)->comment('持续播放多少秒');
+
+            $table->primary(['scenario_id', 'audio_id']);
         });
     }
 
