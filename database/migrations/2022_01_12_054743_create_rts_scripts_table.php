@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTacfScriptsTable extends Migration
+class CreateRtsScriptsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTacfScriptsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tacf_scripts', function (Blueprint $table) {
+        Schema::create('rts_scripts', function (Blueprint $table) {
             $table->id();
             $table->string('range_name');
             $table->unsignedInteger('index')->comment('脚本index');
@@ -33,6 +33,6 @@ class CreateTacfScriptsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tacf_scripts');
+        Schema::dropIfExists('rts_scripts');
     }
 }
