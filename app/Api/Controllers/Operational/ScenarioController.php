@@ -4,23 +4,23 @@ namespace App\Api\Controllers\Operational;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Api\Services\Operational\RtsScriptService;
+use App\Api\Services\Operational\ScenarioService;
 
-class RtsScriptController extends Controller
+class ScenarioController extends Controller
 {
-    public RtsScriptService $service;
+    public ScenarioService $service;
 
     public function __construct()
     {
-        $this->service = new RtsScriptService();
+        $this->service = new ScenarioService();
     }
 
     /**
      * @OA\Get(
-     *     path="/index.php/api/operational/rts-script",
-     *     tags={"Operational/RTS_Script"},
+     *     path="/index.php/api/operational/scenario",
+     *     tags={"Operational/Scenario"},
      *     deprecated=true,
-     *     summary="RTS Script列表",
+     *     summary="场景列表",
      *     operationId="audio",
      *     security={ { "bearerAuth":{}}},
      *     @OA\Response(response=200, description="success",@OA\JsonContent()),
