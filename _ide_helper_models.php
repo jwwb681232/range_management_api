@@ -47,6 +47,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $title 音频名称
+ * @property string $description 描述
  * @property string $path 音频存放地址
  * @property int $size 字节
  * @property int $duration 时长(秒)
@@ -57,6 +58,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Audio newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Audio query()
  * @method static \Illuminate\Database\Eloquent\Builder|Audio whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Audio whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Audio whereDuration($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Audio whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Audio wherePath($value)
@@ -173,6 +175,65 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|RolePermission whereRoleId($value)
  */
 	class RolePermission extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\RtsScript
+ *
+ * @property int $id
+ * @property string $range_name
+ * @property int $index 脚本index
+ * @property string $name 脚本名称
+ * @property int $scenario_id 场景id
+ * @property string $scenario_name 场景名称
+ * @property array $steps 步骤
+ * @property array $participants
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript query()
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereIndex($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereParticipants($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereRangeName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereScenarioId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereScenarioName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereSteps($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereUpdatedAt($value)
+ */
+	class RtsScript extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Scenario
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $description
+ * @property int $type 培训类型[1：Group,2：Individual]
+ * @property int $rts_script_id 关联rts_scripts表id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Audio[] $audios
+ * @property-read int|null $audios_count
+ * @property-read \App\Models\RtsScript|null $rtsScript
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereRtsScriptId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereUpdatedAt($value)
+ */
+	class Scenario extends \Eloquent {}
 }
 
 namespace App\Models{

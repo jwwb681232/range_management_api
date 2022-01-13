@@ -54,6 +54,7 @@ Route::group(['middleware'=>['auth:sanctum','auth.user.mode']],function(){
         Route::get('/audio',['App\Api\Controllers\Operational\AudioController','index']);
 
         Route::get('/rts-script',['App\Api\Controllers\Operational\RtsScriptController','index']);
+        Route::post('/rts-script/sync/{index}',['App\Api\Controllers\Operational\RtsScriptController','sync']);
 
         Route::get('/scenario',['App\Api\Controllers\Operational\ScenarioController','index']);
         Route::post('/scenario',['App\Api\Controllers\Operational\ScenarioController','store']);
