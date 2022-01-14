@@ -25,6 +25,7 @@ Route::post('/auth/login/card', ['App\Api\Controllers\AuthController','loginWith
 
 Route::get('/unit',['App\Api\Controllers\UnitController','index']);
 Route::get('/mode',['App\Api\Controllers\ModeController','index']);
+Route::get('/common/time',['App\Api\Controllers\CommonController','time']);
 
 //Route::get('/admin/unit',['App\Api\Controllers\Admin\UnitController','index']);
 
