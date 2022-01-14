@@ -25,6 +25,8 @@ class IndexRequest extends FormRequest
     {
         return [
             'keyword' => 'string',
+            'unit'    => 'integer|exists:units,id',
+            'mode'    => 'integer|exists:modes,id',
             'status'  => 'in:0,1',
             'page'    => 'integer',
             'limit'   => 'integer',
