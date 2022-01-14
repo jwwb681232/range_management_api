@@ -73,4 +73,14 @@ class ScenarioService
             return $scenario;
         });
     }
+
+    /**
+     * @param $id
+     *
+     * @return int
+     */
+    public function destroy($id)
+    {
+        return $this->model->destroy($id);
+    }
 }

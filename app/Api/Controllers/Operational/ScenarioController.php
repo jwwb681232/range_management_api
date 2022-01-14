@@ -87,4 +87,21 @@ class ScenarioController extends Controller
     {
         return apiReturn($this->service->update($request));
     }
+
+    /**
+     * @OA\Delete(
+     *     path="/index.php/api/operational/scenario/{id}",
+     *     tags={"Operational/Scenario"},
+     *     deprecated=false,
+     *     summary="编辑场景(灯光目前缺失)",
+     *     operationId="delete_scenario",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\Parameter(in="path",name="id",description="自己系统的场景ID",schema={"type":"integer"},required=true),
+     *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
+     * )
+     */
+    public function destroy(Request $request)
+    {
+        return apiReturn($this->service->destroy($request->id));
+    }
 }
