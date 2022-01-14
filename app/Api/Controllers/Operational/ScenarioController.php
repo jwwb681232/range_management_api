@@ -20,7 +20,7 @@ class ScenarioController extends Controller
      * @OA\Get(
      *     path="/index.php/api/operational/scenario",
      *     tags={"Operational/Scenario"},
-     *     deprecated=true,
+     *     deprecated=false,
      *     summary="场景列表",
      *     operationId="scenario_list",
      *     security={ { "bearerAuth":{}}},
@@ -36,21 +36,19 @@ class ScenarioController extends Controller
      * @OA\Post(
      *     path="/index.php/api/operational/scenario",
      *     tags={"Operational/Scenario"},
-     *     deprecated=true,
+     *     deprecated=false,
      *     summary="创建场景(灯光目前缺失)",
      *     operationId="create_scenario",
      *     security={ { "bearerAuth":{}}},
      *     @OA\RequestBody(
      *         @OA\MediaType(
-     *          mediaType="application/x-www-form-urlencoded",
-     *          @OA\Schema(required={"name","description","type","rts_script_id","audio[id]","audio[start_at]","audio[duration]"},
-     *             @OA\Property( property="name",description="场景名称", type="string"),
-     *             @OA\Property( property="description",description="场景描述", type="string"),
-     *             @OA\Property( property="type",description="场景培训类型[1：Group,2：Individual]", type="integer"),
-     *             @OA\Property( property="rts_script_id",description="rts脚本id", type="integer"),
-     *             @OA\Property( property="audio[id]",description="音频id", type="integer"),
-     *             @OA\Property( property="audio[start_at]",description="从哪一秒开始播放", type="integer"),
-     *             @OA\Property( property="audio[duration]",description="持续播放多少秒", type="integer"),
+     *          mediaType="application/json",
+     *          @OA\Schema(required={"name","description","type","rts_script_id","audio"},
+     *             @OA\Property( property="name",type="string",description="场景名称",example="name of scenario"),
+     *             @OA\Property( property="description",type="string",description="场景描述",example="description of scenario"),
+     *             @OA\Property( property="type",type="integer",description="场景培训类型[1：Group,2：Individual]",example=1),
+     *             @OA\Property( property="rts_script_id",description="rts脚本id",type="integer",example=1),
+     *             @OA\Property( property="audio",description="持续播放多少秒", type="integer",example={"id":1,"start_at":0,"duration":30}),
      *         )
      *     )),
      *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
