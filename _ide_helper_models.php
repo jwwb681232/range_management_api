@@ -54,10 +54,13 @@ namespace App\Models{
  * @property int $type 类型(1:Alarm,2:Explosion)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|Audio newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Audio newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Audio onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Audio query()
  * @method static \Illuminate\Database\Eloquent\Builder|Audio whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Audio whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Audio whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Audio whereDuration($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Audio whereId($value)
@@ -66,6 +69,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Audio whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Audio whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Audio whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Audio withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Audio withoutTrashed()
  */
 	class Audio extends \Eloquent {}
 }
@@ -191,10 +196,13 @@ namespace App\Models{
  * @property array $participants
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript newQuery()
+ * @method static \Illuminate\Database\Query\Builder|RtsScript onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript query()
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereIndex($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereName($value)
@@ -204,6 +212,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereScenarioName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereSteps($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|RtsScript withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|RtsScript withoutTrashed()
  */
 	class RtsScript extends \Eloquent {}
 }
@@ -219,19 +229,24 @@ namespace App\Models{
  * @property int $rts_script_id 关联rts_scripts表id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Audio[] $audios
  * @property-read int|null $audios_count
  * @property-read \App\Models\RtsScript|null $rtsScript
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Scenario onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario query()
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereRtsScriptId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Scenario withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Scenario withoutTrashed()
  */
 	class Scenario extends \Eloquent {}
 }
