@@ -34,12 +34,37 @@ class ScenarioService
     public function store(Request $request)
     {
         return DB::transaction(function () use ($request) {
-            $scenario = $this->model->newQuery()->create([
+            $scenario = $this->model->create([
                 'name'          => $request->name,
                 'description'   => $request->description,
                 'type'          => $request->type,
                 'rts_script_id' => $request->rts_script_id,
             ]);
+
+            $scenario->audios()->sync([
+                $request->audio['id'] => collect($request->audio)->except('id')->toArray(),
+            ]);
+
+            return $scenario;
+        });
+    }
+
+    /**
+     * @param  Request  $request
+     *
+     * @return Scenario
+     * @throws Throwable
+     */
+    public function update(Request $request)
+    {
+        return DB::transaction(function () use ($request) {
+            $scenario = $this->model->newQuery()->findOrFail($request->id);
+
+            $scenario->name          = $request->name;
+            $scenario->description   = $request->description;
+            $scenario->type          = $request->type;
+            $scenario->rts_script_id = $request->rts_script_id;
+            $scenario->save();
 
             $scenario->audios()->sync([
                 $request->audio['id'] => collect($request->audio)->except('id')->toArray(),
