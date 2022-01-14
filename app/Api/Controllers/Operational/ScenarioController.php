@@ -93,7 +93,7 @@ class ScenarioController extends Controller
      *     path="/index.php/api/operational/scenario/{id}",
      *     tags={"Operational/Scenario"},
      *     deprecated=false,
-     *     summary="编辑场景(灯光目前缺失)",
+     *     summary="删除场景",
      *     operationId="delete_scenario",
      *     security={ { "bearerAuth":{}}},
      *     @OA\Parameter(in="path",name="id",description="自己系统的场景ID",schema={"type":"integer"},required=true),
