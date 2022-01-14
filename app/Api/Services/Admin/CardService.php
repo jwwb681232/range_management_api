@@ -40,27 +40,31 @@ class CardService
     public function index(Request $request)
     {
         $keyword = $request->input('keyword');
+        $unit    = $request->input('unit');
+        $mode    = $request->input('mode');
 
         $page    = $request->input('page', 1);
         $limit   = $request->input('limit', 10);
         $offset  = ($page - 1) * $limit;
 
-        $condition = $this->model
-            ->when($keyword,fn($query)=>$query->where('number','LIKE',"%$keyword%"));
+        $condition = $this->model->newQuery()
+            ->when($keyword, fn($query) => $query->where('number', 'LIKE', "%$keyword%"))
+            ->when($unit, fn($query) => $query->whereHas('user', fn($subQuery) => $subQuery->where('unit_id', $unit)))
+            ->when($mode, fn($query) => $query->whereHas('user', fn($userQuery) => $userQuery->whereHas('modes', fn($modesQuery) => $modesQuery->where('id', $mode))));
 
         $data['count']     = $condition->count();
         $data['page']      = $page;
         $data['limit']     = $limit;
         $data['countPage'] = ceil($data['count'] / $limit);
 
-        $data['list'] = IndexTransformer::transform(
-            $condition->with([
-                    'user'=>fn($query)=>$query->with(['unit:id,name','modes:id,name'])->select(['id','name','unit_id','card_id'])
-                ])
-                ->offset($offset)
-                ->limit($limit)
-                ->get()
-        );
+        $result = $condition->with([
+                'user'=>fn($query)=>$query->with(['unit:id,name','modes:id,name'])->select(['id','name','unit_id','card_id'])
+            ])
+            ->offset($offset)
+            ->limit($limit)
+            ->get();
+
+        $data['list'] = IndexTransformer::transform($result);
 
         return $data;
     }

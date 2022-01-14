@@ -1,4 +1,26 @@
 <?php
+/*$userName = 'system';
+$password = 'PCG@2021';
+$randomKey = '0b0c80d5f9954d02';
+
+$temp = md5($password);
+$temp = md5($userName.$temp);
+$temp = md5($temp);
+$temp = md5($userName.":DSS:".$temp);
+$signature = md5($temp.":".$randomKey);
+
+$data = [
+    'userName'=> $userName,
+    'randomKey'=> $randomKey,
+    'mac'=> '',
+    'encryptType'=> 'MD5',
+    'ipAddress'=> '',
+    'signature'=> $signature,
+    'clientType'=> 'WINPC',
+];
+
+echo json_encode($data);
+die();*/
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
