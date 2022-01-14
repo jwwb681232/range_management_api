@@ -52,8 +52,7 @@ class CommonController extends Controller
      */
     public function setAutoSync(Request $request)
     {
-        Cache::forever('api:auto_sync',$request->all());
-        return apiReturn([]);
+        return apiReturn(Cache::forever('api:auto_sync',$request->all()));
     }
 
     /**
