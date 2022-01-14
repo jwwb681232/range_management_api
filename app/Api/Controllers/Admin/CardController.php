@@ -43,6 +43,8 @@ class CardController extends Controller
      *     operationId="card",
      *     security={ { "bearerAuth":{}}},
      *     @OA\Parameter(in="query",name="keyword",description="搜索关键字",schema={"type":"string"},required=false),
+     *     @OA\Parameter(in="query",name="unit",description="搜索有此单位的人的卡",schema={"type":"integer"},required=false),
+     *     @OA\Parameter(in="query",name="mode",description="搜索有此模式权限的人的卡",schema={"type":"integer"},required=false),
      *     @OA\Parameter(in="query",name="page",description="当前页",schema={"type":"integer"},required=false),
      *     @OA\Parameter(in="query",name="limit",description="每页条数",schema={"type":"integer"},required=false),
      *     @OA\Response(response=200, description="success",@OA\JsonContent()),
