@@ -59,6 +59,8 @@ Route::group(['middleware'=>['auth:sanctum','auth.user.mode']],function(){
         Route::get('/rts-script',['App\Api\Controllers\Operational\RtsScriptController','index']);
         Route::post('/rts-script/sync/{index}',['App\Api\Controllers\Operational\RtsScriptController','sync']);
 
+        Route::post('/light/sync',['App\Api\Controllers\Operational\LightController','sync']);
+
         Route::get('/scenario',['App\Api\Controllers\Operational\ScenarioController','index']);
         Route::post('/scenario',['App\Api\Controllers\Operational\ScenarioController','store']);
         Route::put('/scenario/{id}',['App\Api\Controllers\Operational\ScenarioController','update']);
