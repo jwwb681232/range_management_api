@@ -29,6 +29,9 @@ Route::get('/common/time',['App\Api\Controllers\CommonController','time']);
 Route::post('/common/setting/auto-sync',['App\Api\Controllers\CommonController','setAutoSync']);
 Route::get('/common/setting/auto-sync',['App\Api\Controllers\CommonController','autoSync']);
 
+Route::post('/operational/rts-script/sync/{index}',['App\Api\Controllers\Operational\RtsScriptController','sync']);
+Route::post('/operational/light/sync',['App\Api\Controllers\Operational\LightController','sync']);
+
 //Route::get('/admin/unit',['App\Api\Controllers\Admin\UnitController','index']);
 
 Route::group(['middleware'=>['auth:sanctum','auth.user.mode']],function(){
@@ -57,9 +60,7 @@ Route::group(['middleware'=>['auth:sanctum','auth.user.mode']],function(){
         Route::get('/audio',['App\Api\Controllers\Operational\AudioController','index']);
 
         Route::get('/rts-script',['App\Api\Controllers\Operational\RtsScriptController','index']);
-        Route::post('/rts-script/sync/{index}',['App\Api\Controllers\Operational\RtsScriptController','sync']);
 
-        Route::post('/light/sync',['App\Api\Controllers\Operational\LightController','sync']);
         Route::get('/light',['App\Api\Controllers\Operational\LightController','index']);
 
         Route::get('/scenario',['App\Api\Controllers\Operational\ScenarioController','index']);
