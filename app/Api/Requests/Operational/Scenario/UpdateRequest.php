@@ -24,14 +24,19 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'           => 'required|string',
-            'description'    => 'required|string',
-            'type'           => 'required|in:1,2',
-            'rts_script_id'  => 'required|exists:rts_scripts,id',
-            'audio'          => 'required|array',
-            'audio.id'       => 'required|exists:audios,id',
-            'audio.start_at' => 'required|integer|min:0',
-            'audio.duration' => 'required|integer|min:0',
+            'name'             => 'required|string',
+            'description'      => 'required|string',
+            'type'             => 'required|in:1,2',
+            'rts_script_id'    => 'required|exists:rts_scripts,id',
+            'audio'            => 'required|array',
+            'audio.*.id'       => 'required|exists:audios,id',
+            'audio.*.start_at' => 'required|integer|min:0',
+            'audio.*.duration' => 'required|integer|min:0',
+
+            'light.*.id'       => 'required|exists:lights,id',
+            'light.*.preset'   => 'required|integer',
+            'light.*.start_at' => 'required|integer|min:0',
+            'light.*.duration' => 'required|integer|min:0',
         ];
     }
 }

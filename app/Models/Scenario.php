@@ -22,4 +22,9 @@ class Scenario extends Model
     {
         return $this->belongsToMany(Audio::class,'scenario_audio','scenario_id','audio_id')->withPivot('start_at', 'duration');
     }
+
+    public function lights()
+    {
+        return $this->belongsToMany(Light::class, 'scenario_light', 'scenario_id', 'light_id')->withPivot('preset', 'start_at', 'duration');
+    }
 }

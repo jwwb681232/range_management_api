@@ -22,7 +22,7 @@ class ScenarioController extends Controller
      *     path="/index.php/api/operational/scenario",
      *     tags={"Operational/Scenario"},
      *     deprecated=false,
-     *     summary="场景列表(灯光目前缺失)",
+     *     summary="场景列表",
      *     operationId="scenario_list",
      *     security={ { "bearerAuth":{}}},
      *     @OA\Response(response=200, description="success",@OA\JsonContent()),
@@ -38,7 +38,7 @@ class ScenarioController extends Controller
      *     path="/index.php/api/operational/scenario",
      *     tags={"Operational/Scenario"},
      *     deprecated=false,
-     *     summary="创建场景(灯光目前缺失)",
+     *     summary="创建场景",
      *     operationId="create_scenario",
      *     security={ { "bearerAuth":{}}},
      *     @OA\RequestBody(
@@ -49,7 +49,8 @@ class ScenarioController extends Controller
      *             @OA\Property( property="description",type="string",description="场景描述",example="description of scenario"),
      *             @OA\Property( property="type",type="integer",description="场景培训类型[1：Group,2：Individual]",example=1),
      *             @OA\Property( property="rts_script_id",description="rts脚本id",type="integer",example=1),
-     *             @OA\Property( property="audio",description="持续播放多少秒", type="integer",example={"id":1,"start_at":0,"duration":30}),
+     *             @OA\Property( property="audio",description="音频持续多少秒", type="integer",example={0:{"id":1,"start_at":0,"duration":30}}),
+     *             @OA\Property( property="light",description="灯光持续多少秒", type="integer",example={0:{"id":1,"preset":2,"start_at":0,"duration":30}}),
      *         )
      *     )),
      *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
@@ -65,7 +66,7 @@ class ScenarioController extends Controller
      *     path="/index.php/api/operational/scenario/{id}",
      *     tags={"Operational/Scenario"},
      *     deprecated=false,
-     *     summary="编辑场景(灯光目前缺失)",
+     *     summary="编辑场景",
      *     operationId="update_scenario",
      *     security={ { "bearerAuth":{}}},
      *     @OA\Parameter(in="path",name="id",description="自己系统的场景ID",schema={"type":"integer"},required=true),
@@ -77,7 +78,8 @@ class ScenarioController extends Controller
      *             @OA\Property( property="description",type="string",description="场景描述",example="description of scenario"),
      *             @OA\Property( property="type",type="integer",description="场景培训类型[1：Group,2：Individual]",example=1),
      *             @OA\Property( property="rts_script_id",description="rts脚本id",type="integer",example=1),
-     *             @OA\Property( property="audio",description="持续播放多少秒", type="integer",example={"id":1,"start_at":0,"duration":30}),
+     *             @OA\Property( property="audio",description="音频持续多少秒", type="integer",example={0:{"id":1,"start_at":0,"duration":30}}),
+     *             @OA\Property( property="light",description="灯光持续多少秒", type="integer",example={0:{"id":1,"preset":2,"start_at":0,"duration":30}}),
      *         )
      *     )),
      *     @OA\Response(response=200, description="Successful",@OA\JsonContent())

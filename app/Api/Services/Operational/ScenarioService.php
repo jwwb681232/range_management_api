@@ -22,7 +22,7 @@ class ScenarioService
      */
     public function index()
     {
-        return $this->model->with(['rtsScript', 'audios'])->get();
+        return $this->model->with(['rtsScript', 'audios', 'lights'])->get();
     }
 
     /**
@@ -41,9 +41,17 @@ class ScenarioService
                 'rts_script_id' => $request->rts_script_id,
             ]);
 
-            $scenario->audios()->sync([
-                $request->audio['id'] => collect($request->audio)->except('id')->toArray(),
-            ]);
+            $scenario->audios()->sync(
+                collect($request->audio)
+                ->keyBy('id')
+                ->transform(fn($item) => collect($item)->except('id'))->toArray()
+            );
+
+            $scenario->lights()->sync(
+                collect($request->light)
+                ->keyBy('id')
+                ->transform(fn($item) => collect($item)->except('id'))->toArray()
+            );
 
             return $scenario;
         });
@@ -66,9 +74,17 @@ class ScenarioService
             $scenario->rts_script_id = $request->rts_script_id;
             $scenario->save();
 
-            $scenario->audios()->sync([
-                $request->audio['id'] => collect($request->audio)->except('id')->toArray(),
-            ]);
+            $scenario->audios()->sync(
+                collect($request->audio)
+                ->keyBy('id')
+                ->transform(fn($item) => collect($item)->except('id'))->toArray()
+            );
+
+            $scenario->lights()->sync(
+                collect($request->light)
+                ->keyBy('id')
+                ->transform(fn($item) => collect($item)->except('id'))->toArray()
+            );
 
             return $scenario;
         });
