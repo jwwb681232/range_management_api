@@ -44,11 +44,6 @@ class LightController extends Controller
      *     summary="Light列表",
      *     operationId="ge_lights",
      *     security={ { "bearerAuth":{}}},
-     *     @OA\RequestBody(
-     *         @OA\MediaType(
-     *          mediaType="application/json",
-     *          @OA\Schema()
-     *     )),
      *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
      * )
      */
