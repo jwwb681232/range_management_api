@@ -17,7 +17,6 @@ class CreateLightsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('number');
             $table->string('name');
-            $table->unsignedBigInteger('deck_id');
             $table->timestamps();
         });
     }

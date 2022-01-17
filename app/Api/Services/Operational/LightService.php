@@ -3,8 +3,6 @@
 namespace App\Api\Services\Operational;
 
 use App\Models\Light;
-use App\Models\LightDeck;
-use App\Models\LightFolder;
 use Illuminate\Http\Request;
 
 class LightService
@@ -16,28 +14,19 @@ class LightService
         $this->model = new Light();
     }
 
+    public function index()
+    {
+        return $this->model->all(['id','number','name']);
+    }
+
     public function sync(Request $request)
     {
-        foreach ($request->folders as $folder) {
-            $lightFolder = LightFolder::query()->create(['name' => $folder['name']]);
-            foreach ($folder['folders'] as $deck) {
-                $lightDeck = LightDeck::query()->create(['folder_id'=>$lightFolder->id, 'name'=>$deck['name']]);
-                $lights = [];
-                foreach ($deck['areas'] as $light) {
-                    $lights[] = [
-                        'number'     => $light['number'],
-                        'name'       => $light['name'],
-                        'deck_id'    => $lightDeck->id,
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ];
-                }
-                Light::query()->insert($lights);
-            }
+        $lights = [];
+        foreach ($request->all() as $item) {
+            $lights[] = $this->model->updateOrCreate(['number'=>$item['number']],['name'=>$item['name'],"id"=>$item['number']]);
         }
 
-
-        return $request->all();
+        return $lights;
     }
 
 }
