@@ -7,8 +7,10 @@ use App\Api\Requests\Admin\Card\IndexRequest;
 use App\Api\Requests\Admin\Card\StoreRequest;
 use App\Api\Requests\Admin\Card\UpdateRequest;
 use App\Api\Services\Admin\CardService;
+use App\Api\Exports\CardExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CardController extends Controller
 {
@@ -53,6 +55,29 @@ class CardController extends Controller
     public function index(IndexRequest $request)
     {
         return apiReturn($this->service->index($request));
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/index.php/api/admin/card/export",
+     *     tags={"Admin/Card"},
+     *     summary="卡片导出",
+     *     operationId="card_export",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\Parameter(in="query",name="keyword",description="搜索关键字",schema={"type":"string"},required=false),
+     *     @OA\Parameter(in="query",name="unit",description="搜索有此单位的人的卡",schema={"type":"integer"},required=false),
+     *     @OA\Parameter(in="query",name="mode",description="搜索有此模式权限的人的卡",schema={"type":"integer"},required=false),
+     *     @OA\Response(response=200, description="success",@OA\JsonContent()),
+     * )
+     */
+    public function export(IndexRequest $request)
+    {
+        $filePath = 'public/export/Card-'.now()->format('d M Y H_i_s').'.xlsx';
+        Excel::store(new CardExport(), $filePath);
+
+        return apiReturn(
+            asset(str_replace('public','storage',$filePath))
+        );
     }
 
     /**

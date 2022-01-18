@@ -49,6 +49,7 @@ Route::group(['middleware'=>['auth:sanctum','auth.user.mode']],function(){
         Route::put('/unit',['App\Api\Controllers\Admin\UnitController','update']);
         Route::delete('/unit',['App\Api\Controllers\Admin\UnitController','destroy']);
 
+        Route::get('/card/export',['App\Api\Controllers\Admin\CardController','export']);
         Route::get('/card/{id}',['App\Api\Controllers\Admin\CardController','show']);
         Route::get('/card',['App\Api\Controllers\Admin\CardController','index']);
         Route::post('/card',['App\Api\Controllers\Admin\CardController','store']);
