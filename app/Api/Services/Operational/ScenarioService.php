@@ -20,9 +20,11 @@ class ScenarioService
      *
      * @return array
      */
-    public function index()
+    public function index($type)
     {
-        return $this->model->with(['rtsScript', 'audios', 'lights'])->get();
+        return $this->model
+            ->when($type, fn($query) => $query->whereType($type))
+            ->with(['rtsScript', 'audios', 'lights'])->get();
     }
 
     /**
