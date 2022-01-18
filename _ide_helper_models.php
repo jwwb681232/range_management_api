@@ -102,6 +102,27 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Light
+ *
+ * @property int $id
+ * @property int $number
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Light newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Light newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Light query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Light whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Light whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Light whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Light whereNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Light whereUpdatedAt($value)
+ */
+	class Light extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Menu
  *
  * @property int $id
@@ -225,6 +246,9 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property string $description
+ * @property string $light_detail
+ * @property string $audio_detail
+ * @property string $rts_script_detail
  * @property int $type 培训类型[1：Group,2：Individual]
  * @property int $rts_script_id 关联rts_scripts表id
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -232,16 +256,21 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Audio[] $audios
  * @property-read int|null $audios_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Light[] $lights
+ * @property-read int|null $lights_count
  * @property-read \App\Models\RtsScript|null $rtsScript
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario newQuery()
  * @method static \Illuminate\Database\Query\Builder|Scenario onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereAudioDetail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereLightDetail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereRtsScriptDetail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereRtsScriptId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereUpdatedAt($value)

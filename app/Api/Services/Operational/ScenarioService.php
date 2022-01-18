@@ -35,10 +35,13 @@ class ScenarioService
     {
         return DB::transaction(function () use ($request) {
             $scenario = $this->model->create([
-                'name'          => $request->name,
-                'description'   => $request->description,
-                'type'          => $request->type,
-                'rts_script_id' => $request->rts_script_id,
+                'name'              => $request->name,
+                'description'       => $request->description,
+                'rts_script_detail' => $request->rts_script_detail,
+                'audio_detail'      => $request->audio_detail,
+                'light_detail'      => $request->light_detail,
+                'type'              => $request->type,
+                'rts_script_id'     => $request->rts_script_id,
             ]);
 
             $scenario->audios()->sync(
@@ -68,10 +71,13 @@ class ScenarioService
         return DB::transaction(function () use ($request) {
             $scenario = $this->model->newQuery()->findOrFail($request->id);
 
-            $scenario->name          = $request->name;
-            $scenario->description   = $request->description;
-            $scenario->type          = $request->type;
-            $scenario->rts_script_id = $request->rts_script_id;
+            $scenario->name              = $request->name;
+            $scenario->description       = $request->description;
+            $scenario->rts_script_detail = $request->rts_script_detail;
+            $scenario->audio_detail      = $request->audio_detail;
+            $scenario->light_detail      = $request->light_detail;
+            $scenario->type              = $request->type;
+            $scenario->rts_script_id     = $request->rts_script_id;
             $scenario->save();
 
             $scenario->audios()->sync(
