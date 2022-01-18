@@ -45,7 +45,7 @@ class ScenarioController extends Controller
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *          mediaType="application/json",
-     *          @OA\Schema(required={"name","description","type","rts_script_id","audio"},
+     *          @OA\Schema(required={"name","description","type","rts_script_id","audio","rts_script_detail","audio_detail","light_detail"},
      *             @OA\Property( property="name",type="string",description="场景名称",example="name of scenario"),
      *             @OA\Property( property="description",type="string",description="场景描述",example="description of scenario"),
      *             @OA\Property( property="rts_script_detail",type="string",description="rts script格式化详细描述",example=""),
@@ -77,7 +77,7 @@ class ScenarioController extends Controller
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *          mediaType="application/json",
-     *          @OA\Schema(required={"name","description","type","rts_script_id","audio"},
+     *          @OA\Schema(required={"name","description","type","rts_script_id","audio","rts_script_detail","audio_detail","light_detail"},
      *             @OA\Property( property="name",type="string",description="场景名称",example="name of scenario"),
      *             @OA\Property( property="description",type="string",description="场景描述",example="description of scenario"),
      *             @OA\Property( property="rts_script_detail",type="string",description="rts script格式化详细描述",example=""),
