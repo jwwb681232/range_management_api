@@ -28,7 +28,6 @@ class RtsScriptService
         $script = $this->model->find($request->index);
         if (!$script){
             return $this->model->newQuery()->create([
-                'id'            => $request->index,
                 'range_name'    => $request->RangeName,//列表的Ranges->RangeName
                 'index'         => $request->index,
                 'name'          => $request->Name,//列表的Ranges->Scenarios->Name
