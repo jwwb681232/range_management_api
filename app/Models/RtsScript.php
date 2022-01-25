@@ -17,4 +17,9 @@ class RtsScript extends Model
         'steps'        => 'json',
         'participants' => 'json',
     ];
+
+    public function doors()
+    {
+        return $this->belongsToMany(Door::class, 'rts_script_door', 'rts_script_id', 'door_id');
+    }
 }
