@@ -24,7 +24,7 @@ class ScenarioService
     {
         return $this->model
             ->when($type, fn($query) => $query->whereType($type))
-            ->with(['rtsScript', 'audios', 'lights'])->get();
+            ->with(['rtsScript.doors:id,door_id,description', 'audios', 'lights'])->get();
     }
 
     /**
