@@ -25,7 +25,7 @@ class RtsScriptService
 
     public function sync(Request $request)
     {
-        $script = $this->model->find($request->index);
+        $script = $this->model->where('index',$request->index)->first();
         if (!$script){
             return $this->model->newQuery()->create([
                 'range_name'    => $request->RangeName,//列表的Ranges->RangeName
