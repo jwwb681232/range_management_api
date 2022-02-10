@@ -29,7 +29,7 @@ Route::get('/common/time',['App\Api\Controllers\CommonController','time']);
 Route::post('/common/setting/auto-sync',['App\Api\Controllers\CommonController','setAutoSync']);
 Route::get('/common/setting/auto-sync',['App\Api\Controllers\CommonController','autoSync']);
 
-Route::post('/operational/rts-script/sync/{index}',['App\Api\Controllers\Operational\RtsScriptController','sync']);
+Route::post('/operational/rts-script/sync/{index}/{machine_number}',['App\Api\Controllers\Operational\RtsScriptController','sync']);
 Route::post('/operational/light/sync',['App\Api\Controllers\Operational\LightController','sync']);
 Route::post('/operational/door/sync',['App\Api\Controllers\Operational\DoorController','sync']);
 
