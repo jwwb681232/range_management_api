@@ -69,5 +69,8 @@ Route::group(['middleware'=>['auth:sanctum','auth.user.mode']],function(){
         Route::post('/scenario',['App\Api\Controllers\Operational\ScenarioController','store']);
         Route::put('/scenario/{id}',['App\Api\Controllers\Operational\ScenarioController','update']);
         Route::delete('/scenario/{id}',['App\Api\Controllers\Operational\ScenarioController','destroy']);
+
+        Route::post('/remote-control-handset/lock/{machine_number}',['App\Api\Controllers\Operational\RemoteControlHandsetController','lock']);
+        Route::post('/remote-control-handset/unlock/{machine_number}',['App\Api\Controllers\Operational\RemoteControlHandsetController','unlock']);
     });
 });
