@@ -1,5 +1,5 @@
 <?php
-if (isset($_GET['key']) && $randomKey = $_GET['key']){
+if (isset($_GET['dahua_key']) && $randomKey = $_GET['dahua_key']){
     $userName = 'system';
     $password = 'PCG@2021';
     //$randomKey = 'bc504b6199ad4265';
