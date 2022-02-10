@@ -1,26 +1,29 @@
 <?php
-/*$userName = 'system';
-$password = 'PCG@2021';
-$randomKey = '0b0c80d5f9954d02';
+if (isset($_GET['key']) && $randomKey = $_GET['key']){
+    $userName = 'system';
+    $password = 'PCG@2021';
+    //$randomKey = 'bc504b6199ad4265';
 
-$temp = md5($password);
-$temp = md5($userName.$temp);
-$temp = md5($temp);
-$temp = md5($userName.":DSS:".$temp);
-$signature = md5($temp.":".$randomKey);
+    $temp = md5($password);
+    $temp = md5($userName.$temp);
+    $temp = md5($temp);
+    $temp = md5($userName.":DSS:".$temp);
+    $signature = md5($temp.":".$randomKey);
 
-$data = [
-    'userName'=> $userName,
-    'randomKey'=> $randomKey,
-    'mac'=> '',
-    'encryptType'=> 'MD5',
-    'ipAddress'=> '',
-    'signature'=> $signature,
-    'clientType'=> 'WINPC',
-];
+    $data = [
+        'userName'=> $userName,
+        'randomKey'=> $randomKey,
+        'mac'=> '',
+        'encryptType'=> 'MD5',
+        'ipAddress'=> '',
+        'signature'=> $signature,
+        'clientType'=> 'WINPC',
+    ];
 
-echo json_encode($data);
-die();*/
+    echo json_encode($data);
+    die();
+}
+
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
