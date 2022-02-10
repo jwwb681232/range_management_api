@@ -25,16 +25,17 @@ class RtsScriptService
 
     public function sync(Request $request)
     {
-        $script = $this->model->where('index',$request->index)->first();
+        $script = $this->model->where('index',$request->index)->where('machine_number',$request->machine_number)->first();
         if (!$script){
             return $this->model->newQuery()->create([
-                'range_name'    => $request->RangeName,//列表的Ranges->RangeName
-                'index'         => $request->index,
-                'name'          => $request->Name,//列表的Ranges->Scenarios->Name
-                'scenario_id'   => $request->ScenarioID,
-                'scenario_name' => $request->ScenarioName,
-                'steps'         => $request->Steps,
-                'participants'  => $request->Participants,
+                'machine_number' => $request->machine_number,//列表的Ranges->RangeName
+                'range_name'     => $request->RangeName,//列表的Ranges->RangeName
+                'index'          => $request->index,
+                'name'           => $request->Name,//列表的Ranges->Scenarios->Name
+                'scenario_id'    => $request->ScenarioID,
+                'scenario_name'  => $request->ScenarioName,
+                'steps'          => $request->Steps,
+                'participants'   => $request->Participants,
             ]);
         }
 

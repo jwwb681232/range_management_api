@@ -26,12 +26,13 @@ class ScenarioController extends Controller
      *     operationId="scenario_list",
      *     security={ { "bearerAuth":{}}},
      *     @OA\Parameter(in="query",name="type",description="培训类型[1：Group,2：Individual]",schema={"type":"integer"},required=false),
+     *     @OA\Parameter(in="query",name="machine_number",description="机器编号",schema={"type":"string"},required=true),
      *     @OA\Response(response=200, description="success",@OA\JsonContent()),
      * )
      */
     public function index(Request $request)
     {
-        return apiReturn($this->service->index($request->type));
+        return apiReturn($this->service->index($request->type,$request->machine_number));
     }
 
     /**
