@@ -74,5 +74,7 @@ Route::group(['middleware'=>['auth:sanctum','auth.user.mode']],function(){
         Route::get('/remote-control-handset/lock/{machine_number}',['App\Api\Controllers\Operational\RemoteControlHandsetController','index']);
         Route::post('/remote-control-handset/lock/{machine_number}',['App\Api\Controllers\Operational\RemoteControlHandsetController','lock']);
         Route::post('/remote-control-handset/unlock/{machine_number}',['App\Api\Controllers\Operational\RemoteControlHandsetController','unlock']);
+
+        Route::post('/training',['App\Api\Controllers\Operational\TrainingController','store']);
     });
 });
