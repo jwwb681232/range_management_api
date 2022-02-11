@@ -35,4 +35,22 @@ class DoorController extends Controller
     {
         return apiReturn($this->service->sync($request));
     }
+
+    /**
+     * @OA\Get(
+     *     path="/index.php/api/operational/door/config/{machine_number}",
+     *     tags={"Operational/Door"},
+     *     deprecated=false,
+     *     summary="Door Access 检查",
+     *     operationId="rms_door",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\Parameter(in="path",name="machine_number",description="机器编号",schema={"type":"string"},required=true),
+     *     @OA\Response(response=200, description="success",@OA\JsonContent()),
+     * )
+     */
+    public function machineNumber(Request $request)
+    {
+        $doors = config('door.'.$request->machine_number);
+        return apiReturn($doors);
+    }
 }
