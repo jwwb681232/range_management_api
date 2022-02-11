@@ -29,6 +29,9 @@ class CameraService
         $cameras = [];
         foreach ($request->all() as $device) {
             foreach ($device['units'] as $unit) {
+                if ($unit['unitType'] != 1){
+                    continue;
+                }
                 foreach ($unit['channels'] as $channel) {
                     $cameras[] = [
                         'code'           => $device['code'],
