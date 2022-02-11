@@ -20,6 +20,7 @@ class TrainingService
         $this->type = match (request()->mode) {
             'manual' => [3],
             'scenario' => [1, 2],
+            null => []
         };
     }
 
@@ -76,6 +77,9 @@ class TrainingService
             'rts_script_id' => $request->rts_script_id ?: $scenario->rts_script_id,
             'start_at'      => $request->start_at,
             'end_at'        => $request->end_at,
+            'firing_detail' => $request->firing_detail,
+            'total_hits'    => $request->total_hits,
+            'trainees'      => $request->trainees,
         ];
 
         return $this->model->create($data);

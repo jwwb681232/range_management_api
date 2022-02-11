@@ -10,6 +10,10 @@ class Training extends Model
     protected $primaryKey = 'id';
     protected $guarded = ['_token'];
 
+    protected $casts = [
+        'trainees' => 'json',
+    ];
+
     public function scenario()
     {
         return $this->hasOne(Scenario::class,'id','scenario_id');

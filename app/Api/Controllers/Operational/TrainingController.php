@@ -68,6 +68,9 @@ class TrainingController extends Controller
      *             @OA\Property( property="rts_script_id",type="integer",description="训练时使用rts script id(只有type=[3]的时候才有值,其余传0)",example=1),
      *             @OA\Property( property="start_at",type="string",description="训练开始时间",example="2022-02-11 14:20:50"),
      *             @OA\Property( property="end_at",type="string",description="训练结束时间",example="2022-02-11 14:22:32"),
+     *             @OA\Property( property="firing_detail",type="string",description="",example="4"),
+     *             @OA\Property( property="total_hits",type="integer",description="",example=0),
+     *             @OA\Property( property="trainees",description="训练人员", type="integer",example={0:{"name":"wangxiao","rank":1,"ic":"S9208291E"},1:{"name":"muge","rank":2,"ic":"S2011291E"}}),
      *         )
      *     )),
      *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
