@@ -15,9 +15,9 @@ class CreateRtsScriptCameraTable extends Migration
     {
         Schema::create('rts_script_camera', function (Blueprint $table) {
             $table->unsignedInteger('rts_script_id');
-            $table->unsignedInteger('camera_id');
+            $table->string('channel_code');
 
-            $table->primary(['rts_script_id', 'camera_id']);
+            $table->primary(['rts_script_id', 'channel_code']);
         });
     }
 

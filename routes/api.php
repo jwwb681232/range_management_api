@@ -32,6 +32,7 @@ Route::get('/common/setting/auto-sync',['App\Api\Controllers\CommonController','
 Route::post('/operational/rts-script/sync/{index}/{machine_number}',['App\Api\Controllers\Operational\RtsScriptController','sync']);
 Route::post('/operational/light/sync',['App\Api\Controllers\Operational\LightController','sync']);
 Route::post('/operational/door/sync',['App\Api\Controllers\Operational\DoorController','sync']);
+Route::post('/operational/camera/sync',['App\Api\Controllers\Operational\CameraController','sync']);
 
 //Route::get('/admin/unit',['App\Api\Controllers\Admin\UnitController','index']);
 
