@@ -16,6 +16,42 @@ class TrainingController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     path="/index.php/api/operational/training/{mode}",
+     *     tags={"Operational/Training"},
+     *     deprecated=false,
+     *     summary="训练记录 文件夹深度 1",
+     *     operationId="get_training_mode",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\Parameter(in="path",name="mode",description="训练模式[manual,scenario]",schema={"type":"string"},required=true),
+     *     @OA\Parameter(in="query",name="date",description="搜索日期",schema={"type":"string"},required=false),
+     *     @OA\Response(response=200, description="success",@OA\JsonContent()),
+     * )
+     */
+    public function mode(Request $request)
+    {
+        return apiReturn($this->service->mode($request));
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/index.php/api/operational/training/{mode}/{date}",
+     *     tags={"Operational/Training"},
+     *     deprecated=false,
+     *     summary="训练记录 文件夹深度 2",
+     *     operationId="get_training_date",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\Parameter(in="path",name="mode",description="训练模式[manual,scenario]",schema={"type":"string"},required=true),
+     *     @OA\Parameter(in="path",name="date",description="训练日期",schema={"type":"string"},required=true),
+     *     @OA\Response(response=200, description="success",@OA\JsonContent()),
+     * )
+     */
+    public function date(Request $request)
+    {
+        return apiReturn($this->service->date($request));
+    }
+
+    /**
      * @OA\Post(
      *     path="/index.php/api/operational/training",
      *     tags={"Operational/Training"},
