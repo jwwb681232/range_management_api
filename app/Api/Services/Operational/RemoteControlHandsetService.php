@@ -19,6 +19,12 @@ class RemoteControlHandsetService
         $this->model = new Scenario();
     }
 
+    public function index(Request $request)
+    {
+        $cacheKey = 'range_management:remote_control_handset:'.$request->machine_number;
+        return !!Cache::get($cacheKey);
+    }
+
     /**
      * @param  Request  $request
      *

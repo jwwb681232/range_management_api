@@ -16,6 +16,23 @@ class RemoteControlHandsetController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     path="/index.php/api/operational/remote-control-handset/lock/{machine_number}",
+     *     tags={"Operational/Firing"},
+     *     deprecated=false,
+     *     summary="获取是否正在进行远程模式",
+     *     operationId="get_remote_control_handset_lock",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\Parameter(in="path",name="machine_number",description="机器编号",schema={"type":"string"},required=true),
+     *     @OA\Response(response=200, description="success",@OA\JsonContent()),
+     * )
+     */
+    public function index(Request $request)
+    {
+        return apiReturn($this->service->index($request));
+    }
+
+    /**
      * @OA\Post(
      *     path="/index.php/api/operational/remote-control-handset/lock/{machine_number}",
      *     tags={"Operational/Firing"},
