@@ -25,7 +25,7 @@ class ScenarioService
         return $this->model
             ->when($type, fn($query) => $query->whereType($type))
             ->when($machineNumber, fn($query) => $query->whereHas('rtsScript', fn($subQuery) => $subQuery->where('machine_number',$machineNumber)))
-            ->with(['rtsScript.doors:id,door_id,description', 'audios', 'lights'])->get();
+            ->with(['rtsScript.doors:id,door_id,description', 'rtsScript.cameras','audios', 'lights'])->get();
     }
 
     /**

@@ -20,7 +20,7 @@ class RtsScriptService
      */
     public function index()
     {
-        return $this->model->with('doors:id,door_id,description')->get();
+        return $this->model->with(['doors:id,door_id,description','cameras'])->get();
     }
 
     public function sync(Request $request)
