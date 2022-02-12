@@ -43,7 +43,7 @@ class TrainingService
             ->selectRaw("DATE_FORMAT(start_at,'%Y-%m-%d') days")
             ->groupBy('days')
             ->pluck('days')
-            ->map(fn($item) => Carbon::parse($item)->format("d M Y"));
+            ->map(fn($item) => ['semantic'=>Carbon::parse($item)->format("d M Y"),'date'=>Carbon::parse($item)->format("Y-m-d")]);
     }
 
     /**
