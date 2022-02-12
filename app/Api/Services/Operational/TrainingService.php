@@ -22,6 +22,14 @@ class TrainingService
         $this->model = new Training();
     }
 
+    public function detail($id)
+    {
+        return $this->model->newQuery()
+            ->with('rtsScript', fn($query) => $query->with('cameras')->select(['id', 'machine_number', 'index', 'name']))
+            ->with('scenario')
+            ->find($id);
+    }
+
     public function latestTime()
     {
         $manual   = $this->model->whereIn('type', $this->type['manual'])->orderByDesc('start_at')->first();

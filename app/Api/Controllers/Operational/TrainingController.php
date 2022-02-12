@@ -17,6 +17,23 @@ class TrainingController extends Controller
 
     /**
      * @OA\Get(
+     *     path="/index.php/api/operational/training/detail/{id}",
+     *     tags={"Operational/Training"},
+     *     deprecated=false,
+     *     summary="训练详情",
+     *     operationId="get_training_detail",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\Parameter(in="path",name="id",description="训练id",schema={"type":"integer"},required=true),
+     *     @OA\Response(response=200, description="success",@OA\JsonContent()),
+     * )
+     */
+    public function show(Request $request)
+    {
+        return apiReturn($this->service->detail($request->id));
+    }
+
+    /**
+     * @OA\Get(
      *     path="/index.php/api/operational/training/latest",
      *     tags={"Operational/Training"},
      *     deprecated=false,
