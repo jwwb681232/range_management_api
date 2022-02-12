@@ -77,6 +77,41 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Camera
+ *
+ * @property int $id
+ * @property string $code
+ * @property string $name
+ * @property int $status
+ * @property int $unit_type
+ * @property int $unit_seq
+ * @property string $channel_code
+ * @property string $channel_name
+ * @property int $channel_seq
+ * @property int $channel_status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera whereChannelCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera whereChannelName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera whereChannelSeq($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera whereChannelStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera whereUnitSeq($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera whereUnitType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Camera whereUpdatedAt($value)
+ */
+	class Camera extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Card
  *
  * @property int $id
@@ -98,6 +133,33 @@ namespace App\Models{
  * @method static \Illuminate\Database\Query\Builder|Card withoutTrashed()
  */
 	class Card extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Door
+ *
+ * @property int $id
+ * @property string $door_id
+ * @property string $code
+ * @property string $description
+ * @property int $reader_no
+ * @property string $controller_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Door newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Door newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Door query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Door whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Door whereControllerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Door whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Door whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Door whereDoorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Door whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Door whereReaderNo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Door whereUpdatedAt($value)
+ */
+	class Door extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -208,8 +270,9 @@ namespace App\Models{
  * App\Models\RtsScript
  *
  * @property int $id
+ * @property string $machine_number
  * @property string $range_name
- * @property int $index 脚本index
+ * @property string $index 脚本index
  * @property string $name 脚本名称
  * @property int $scenario_id 场景id
  * @property string $scenario_name 场景名称
@@ -218,6 +281,10 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Camera[] $cameras
+ * @property-read int|null $cameras_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Door[] $doors
+ * @property-read int|null $doors_count
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript newQuery()
  * @method static \Illuminate\Database\Query\Builder|RtsScript onlyTrashed()
@@ -226,6 +293,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereIndex($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereMachineNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereParticipants($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RtsScript whereRangeName($value)
@@ -278,6 +346,41 @@ namespace App\Models{
  * @method static \Illuminate\Database\Query\Builder|Scenario withoutTrashed()
  */
 	class Scenario extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Training
+ *
+ * @property int $id
+ * @property int $type 培训类型[1：Group,2：Individual,3：Manual Training,4：Remote Control Handset mode]
+ * @property int $scenario_id 只有type=[1|2]的时候才有值
+ * @property int $rts_script_id
+ * @property string $start_at
+ * @property string $end_at
+ * @property string $firing_detail
+ * @property int $total_hits
+ * @property array|null $trainees
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\RtsScript|null $rtsScript
+ * @property-read \App\Models\Scenario|null $scenario
+ * @method static \Illuminate\Database\Eloquent\Builder|Training newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Training newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Training query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Training whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Training whereEndAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Training whereFiringDetail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Training whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Training whereRtsScriptId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Training whereScenarioId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Training whereStartAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Training whereTotalHits($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Training whereTrainees($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Training whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Training whereUpdatedAt($value)
+ */
+	class Training extends \Eloquent {}
 }
 
 namespace App\Models{
