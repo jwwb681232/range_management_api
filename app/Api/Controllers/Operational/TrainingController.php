@@ -17,6 +17,22 @@ class TrainingController extends Controller
 
     /**
      * @OA\Get(
+     *     path="/index.php/api/operational/training/latest",
+     *     tags={"Operational/Training"},
+     *     deprecated=false,
+     *     summary="文件夹时间",
+     *     operationId="get_training_latest_time",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\Response(response=200, description="success",@OA\JsonContent()),
+     * )
+     */
+    public function latestTime()
+    {
+        return apiReturn($this->service->latestTime());
+    }
+
+    /**
+     * @OA\Get(
      *     path="/index.php/api/operational/training/{mode}",
      *     tags={"Operational/Training"},
      *     deprecated=false,

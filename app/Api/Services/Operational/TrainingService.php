@@ -12,16 +12,25 @@ use Illuminate\Support\Carbon;
 class TrainingService
 {
     public Training $model;
-    public $type;
+    public $type = [
+        'manual'   => [3],
+        'scenario' => [1, 2]
+    ];
 
     public function __construct()
     {
         $this->model = new Training();
-        $this->type = match (request()->mode) {
-            'manual' => [3],
-            'scenario' => [1, 2],
-            null => []
-        };
+    }
+
+    public function latestTime()
+    {
+        $manual   = $this->model->whereIn('type', $this->type['manual'])->orderByDesc('start_at')->first();
+        $scenario = $this->model->whereIn('type', $this->type['scenario'])->orderByDesc('start_at')->first();
+
+        return [
+            'manual'   => $manual ? Carbon::parse($manual->start_at)->format('H:i d M Y') : '',
+            'scenario' => $scenario ? Carbon::parse($scenario->start_at)->format('H:i d M Y') : '',
+        ];
     }
 
     /**
@@ -39,7 +48,7 @@ class TrainingService
 
                 return $query->whereBetween('start_at', $between);
             })
-            ->whereIn('type', $this->type)
+            ->whereIn('type', $this->type[$request->mode])
             ->selectRaw("DATE_FORMAT(start_at,'%Y-%m-%d') days")
             ->groupBy('days')
             ->pluck('days')
@@ -57,7 +66,7 @@ class TrainingService
 
         return $this->model
             ->whereBetween('start_at', $dateBetween)
-            ->whereIn('type', $this->type)
+            ->whereIn('type', $this->type[$request->mode])
             ->with('rtsScript', fn($query) => $query->with('cameras')->select(['id', 'machine_number', 'index', 'name']))
             ->get();
     }
