@@ -34,6 +34,23 @@ class TrainingController extends Controller
 
     /**
      * @OA\Get(
+     *     path="/index.php/api/operational/training/pdf/{id}",
+     *     tags={"Operational/Training"},
+     *     deprecated=false,
+     *     summary="训练详情PDF",
+     *     operationId="get_training_pdf",
+     *     security={ { "bearerAuth":{}}},
+     *     @OA\Parameter(in="path",name="id",description="训练id",schema={"type":"integer"},required=true),
+     *     @OA\Response(response=200, description="success",@OA\JsonContent()),
+     * )
+     */
+    public function pdf(Request $request)
+    {
+        return apiReturn($this->service->pdf($request->id));
+    }
+
+    /**
+     * @OA\Get(
      *     path="/index.php/api/operational/training/latest",
      *     tags={"Operational/Training"},
      *     deprecated=false,

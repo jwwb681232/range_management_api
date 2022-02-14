@@ -4,6 +4,7 @@ namespace App\Api\Services\Operational;
 
 use App\Models\Scenario;
 use App\Models\Training;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -28,6 +29,16 @@ class TrainingService
             ->with('rtsScript', fn($query) => $query->with('cameras')->select(['id', 'machine_number', 'index', 'name']))
             ->with('scenario')
             ->find($id);
+    }
+
+    public function pdf($id)
+    {
+        $training = $this->detail($id);
+        $pdf = Pdf::loadView('export.api.training-pdf',['data'=>$training]);
+
+        $filePath = "app/public/export/Training ".Carbon::parse($training->start_at)->format('Y-m-d H_i_s')." - ".Carbon::parse($training->end_at)->format('Y-m-d H_i_s').".pdf";
+        $pdf->save(storage_path($filePath));
+        return asset(str_replace('app/public','storage',$filePath));
     }
 
     public function latestTime()
