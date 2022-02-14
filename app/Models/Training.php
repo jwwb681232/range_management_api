@@ -14,6 +14,17 @@ class Training extends Model
         'trainees' => 'json',
     ];
 
+    const GROUP           = 1;
+    const INDIVIDUAL      = 2;
+    const MANUAL_TRAINING = 3;
+    const RCH             = 4;
+    public static $typeMap = [
+        self::GROUP           => 'Group',
+        self::INDIVIDUAL      => 'Individual',
+        self::MANUAL_TRAINING => 'Manual Training',
+        self::RCH             => 'Remote Control Handset mode',
+    ];
+
     public function scenario()
     {
         return $this->hasOne(Scenario::class,'id','scenario_id');

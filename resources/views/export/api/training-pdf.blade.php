@@ -40,7 +40,7 @@
 <div class="detail">
     <p>Scenario Name: {{ $data->scenario->name }}</p>
     <p>Firing Detail: {{ $data->firing_detail }}</p>
-    <p>Training Mode: {{ $data->type }}</p>
+    <p>Training Mode: {{ \App\Models\Training::$typeMap[$data->type] }}</p>
     <p>Total Hits: {{ $data->total_hits }}</p>
     <p>Start Time: {{ $data->start_at }}</p>
     <p>End Time: {{ $data->end_at }}</p>
