@@ -23,6 +23,11 @@ class TrainingService
         $this->model = new Training();
     }
 
+    /**
+     * @param $id
+     *
+     * @return Training|null
+     */
     public function detail($id)
     {
         return $this->model->newQuery()
@@ -31,6 +36,11 @@ class TrainingService
             ->find($id);
     }
 
+    /**
+     * @param $id
+     *
+     * @return string
+     */
     public function pdf($id)
     {
         $training = $this->detail($id);
@@ -41,6 +51,9 @@ class TrainingService
         return asset(str_replace('app/public','storage',$filePath));
     }
 
+    /**
+     * @return string[]
+     */
     public function latestTime()
     {
         $manual   = $this->model->whereIn('type', $this->type['manual'])->orderByDesc('start_at')->first();
