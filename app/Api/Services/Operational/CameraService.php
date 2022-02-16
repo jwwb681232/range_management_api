@@ -3,6 +3,8 @@
 namespace App\Api\Services\Operational;
 
 use App\Models\Camera;
+use App\Models\RtsScript;
+use App\Models\RtsScriptCamera;
 use Illuminate\Http\Request;
 
 class CameraService
@@ -50,7 +52,38 @@ class CameraService
             }
         }
 
+        $this->linkRtsScript($cameras);
+
         return $this->model->insert($cameras);
     }
 
+    private function linkRtsScript($cameras)
+    {
+        RtsScriptCamera::query()->where('rts_script_id','>',0)->delete();
+
+        $rtsScripts = RtsScript::all();
+
+        $links = [];
+
+        foreach ($rtsScripts as $rtsScript) {
+            foreach ($cameras as $camera){
+                if ($rtsScript->machine_number == 'CQB' && $camera['code'] == '1000014'){
+                    $links[] = [
+                        'rts_script_id'=>$rtsScript->id,
+                        'channel_code'=>$camera['channel_code'],
+                    ];
+                }
+
+                if ($rtsScript->machine_number == '25M Range' && $camera['code'] == '1000013'){
+                    $links[] = [
+                        'rts_script_id'=>$rtsScript->id,
+                        'channel_code'=>$camera['channel_code'],
+                    ];
+                }
+            }
+        }
+
+        RtsScriptCamera::query()->insert($links);
+
+    }
 }
