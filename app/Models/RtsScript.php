@@ -20,7 +20,7 @@ class RtsScript extends Model
 
     public function doors()
     {
-        return $this->belongsToMany(Door::class, 'rts_script_door', 'rts_script_index', 'door_id');
+        return $this->belongsToMany(Door::class, 'rts_script_door', 'rts_script_index', 'door_id', 'index');
     }
 
     public function cameras()
