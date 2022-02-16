@@ -44,7 +44,7 @@ class ScenarioService
                 'audio_detail'      => $request->audio_detail,
                 'light_detail'      => $request->light_detail,
                 'type'              => $request->type,
-                'rts_script_id'     => $request->rts_script_id,
+                'rts_script_index'  => $request->rts_script_index,
             ]);
 
             $scenario->audios()->sync(
@@ -80,7 +80,7 @@ class ScenarioService
             $scenario->audio_detail      = $request->audio_detail;
             $scenario->light_detail      = $request->light_detail;
             $scenario->type              = $request->type;
-            $scenario->rts_script_id     = $request->rts_script_id;
+            $scenario->rts_script_index  = $request->rts_script_index;
             $scenario->save();
 
             $scenario->audios()->sync(

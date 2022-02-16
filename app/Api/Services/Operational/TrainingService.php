@@ -113,14 +113,14 @@ class TrainingService
         $scenario = Scenario::find($request->scenario_id);
 
         $data = [
-            'type'          => $request->type,
-            'scenario_id'   => $request->scenario_id,
-            'rts_script_id' => $request->rts_script_id ?: $scenario->rts_script_id,
-            'start_at'      => $request->start_at,
-            'end_at'        => $request->end_at,
-            'firing_detail' => $request->firing_detail,
-            'total_hits'    => $request->total_hits,
-            'trainees'      => $request->trainees,
+            'type'             => $request->type,
+            'scenario_id'      => $request->scenario_id,
+            'rts_script_index' => $request->rts_script_index ?: $scenario->rts_script_index,
+            'start_at'         => $request->start_at,
+            'end_at'           => $request->end_at,
+            'firing_detail'    => $request->firing_detail,
+            'total_hits'       => $request->total_hits,
+            'trainees'         => $request->trainees,
         ];
 
         return $this->model->create($data);

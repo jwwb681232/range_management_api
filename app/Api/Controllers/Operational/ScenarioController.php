@@ -53,7 +53,7 @@ class ScenarioController extends Controller
      *             @OA\Property( property="audio_detail",type="string",description="audio格式化详细描述",example=""),
      *             @OA\Property( property="light_detail",type="string",description="light格式化详细描述",example=""),
      *             @OA\Property( property="type",type="integer",description="场景培训类型[1：Group,2：Individual]",example=1),
-     *             @OA\Property( property="rts_script_id",description="rts脚本id",type="integer",example=1),
+     *             @OA\Property( property="rts_script_index",description="rts脚本index",type="string",example="7E59B8DB-3D22-40E3-BC76-D2364AE8B6AF"),
      *             @OA\Property( property="audio",description="音频持续多少秒", type="integer",example={0:{"id":1,"start_at":0,"duration":30}}),
      *             @OA\Property( property="light",description="灯光持续多少秒", type="integer",example={0:{"id":1,"preset":2,"start_at":0,"duration":30}}),
      *         )
@@ -85,7 +85,7 @@ class ScenarioController extends Controller
      *             @OA\Property( property="audio_detail",type="string",description="audio格式化详细描述",example=""),
      *             @OA\Property( property="light_detail",type="string",description="light格式化详细描述",example=""),
      *             @OA\Property( property="type",type="integer",description="场景培训类型[1：Group,2：Individual]",example=1),
-     *             @OA\Property( property="rts_script_id",description="rts脚本id",type="integer",example=1),
+     *             @OA\Property( property="rts_script_index",description="rts脚本index",type="integer",example="0AE4AB07-1255-40F9-B305-189D20217B91"),
      *             @OA\Property( property="audio",description="音频持续多少秒", type="integer",example={0:{"id":1,"start_at":0,"duration":30}}),
      *             @OA\Property( property="light",description="灯光持续多少秒", type="integer",example={0:{"id":1,"preset":2,"start_at":0,"duration":30}}),
      *         )

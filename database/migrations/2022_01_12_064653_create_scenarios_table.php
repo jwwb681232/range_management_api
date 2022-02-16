@@ -18,7 +18,7 @@ class CreateScenariosTable extends Migration
             $table->string('name',1024);
             $table->string('description');
             $table->unsignedTinyInteger('type')->comment('培训类型[1：Group,2：Individual]');
-            $table->unsignedInteger('rts_script_id')->comment('关联rts_scripts表id');
+            $table->string('rts_script_index')->comment('关联rts_scripts表index');
             $table->timestamps();
         });
     }

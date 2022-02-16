@@ -32,6 +32,6 @@ class Training extends Model
 
     public function rtsScript()
     {
-        return $this->hasOne(RtsScript::class,'id','rts_script_id');
+        return $this->hasOne(RtsScript::class,'index','rts_script_index');
     }
 }
