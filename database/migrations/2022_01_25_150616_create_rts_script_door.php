@@ -14,10 +14,10 @@ class CreateRtsScriptDoor extends Migration
     public function up()
     {
         Schema::create('rts_script_door', function (Blueprint $table) {
-            $table->unsignedInteger('rts_script_id');
+            $table->string('rts_script_index');
             $table->unsignedInteger('door_id');
 
-            $table->primary(['rts_script_id', 'door_id']);
+            $table->primary(['rts_script_index', 'door_id']);
         });
     }
 
