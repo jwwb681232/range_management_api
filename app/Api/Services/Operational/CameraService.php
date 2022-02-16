@@ -59,7 +59,7 @@ class CameraService
 
     private function linkRtsScript($cameras)
     {
-        RtsScriptCamera::query()->where('rts_script_id','>',0)->delete();
+        RtsScriptCamera::query()->where('rts_script_index','!=','0')->delete();
 
         $rtsScripts = RtsScript::all();
 
@@ -72,7 +72,7 @@ class CameraService
                     || ($rtsScript->machine_number == '25M Range' && $camera['code'] == '1000015')
                 ){
                     $links[] = [
-                        'rts_script_id'=>$rtsScript->id,
+                        'rts_script_index'=>$rtsScript->index,
                         'channel_code'=>$camera['channel_code'],
                     ];
                 }
