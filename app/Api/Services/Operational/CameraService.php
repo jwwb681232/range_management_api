@@ -69,7 +69,7 @@ class CameraService
             foreach ($cameras as $camera){
                 if (
                     ($rtsScript->machine_number == 'CQB' && $camera['code'] == '1000014')
-                    || ($rtsScript->machine_number == '25M Range' && $camera['code'] == '1000013')
+                    || ($rtsScript->machine_number == '25M Range' && $camera['code'] == '1000015')
                 ){
                     $links[] = [
                         'rts_script_id'=>$rtsScript->id,
