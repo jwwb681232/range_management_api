@@ -30,7 +30,7 @@ class StoreRequest extends FormRequest
             'audio_detail'      => 'required|string',
             'light_detail'      => 'required|string',
             'type'              => 'required|in:1,2',
-            'rts_script_id'     => 'required|exists:rts_scripts,id',
+            'rts_script_index'  => 'required|exists:rts_scripts,index',
             'audio'             => 'required|array',
             'audio.*.id'        => 'required|exists:audios,id',
             'audio.*.start_at'  => 'required|integer|min:0',
