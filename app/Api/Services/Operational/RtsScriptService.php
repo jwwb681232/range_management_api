@@ -25,6 +25,7 @@ class RtsScriptService
 
     public function sync(Request $request)
     {
+        $this->model->where('machine_number',$request->machine_number)->delete();
         $script = $this->model->where('index',$request->index)->where('machine_number',$request->machine_number)->first();
         if (!$script){
             return $this->model->newQuery()->create([
