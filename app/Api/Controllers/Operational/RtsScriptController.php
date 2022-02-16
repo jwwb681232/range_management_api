@@ -33,13 +33,12 @@ class RtsScriptController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/index.php/api/operational/rts-script/sync/{index}/{machine_number}",
+     *     path="/index.php/api/operational/rts-script/sync/{machine_number}",
      *     tags={"Operational/RTS_Script"},
      *     deprecated=false,
      *     summary="RTS Script同步",
      *     operationId="sync_rts_script",
      *     security={ { "bearerAuth":{}}},
-     *     @OA\Parameter(in="path",name="index",description="场景index",schema={"type":"integer"},required=true),
      *     @OA\Parameter(in="path",name="machine_number",description="机器编号",schema={"type":"string"},required=true),
      *     @OA\RequestBody(
      *         @OA\MediaType(

@@ -25,30 +25,25 @@ class RtsScriptService
 
     public function sync(Request $request)
     {
-        $this->model->where('machine_number',$request->machine_number)->delete();
-        $script = $this->model->where('index',$request->index)->where('machine_number',$request->machine_number)->first();
-        if (!$script){
-            return $this->model->newQuery()->create([
+        $this->model->where('machine_number',$request->machine_number)->forceDelete();
+        $data = [];
+        foreach ($request->all() as $item) {
+            $data[] = [
                 'machine_number' => $request->machine_number,//列表的Ranges->RangeName
-                'range_name'     => $request->RangeName,//列表的Ranges->RangeName
-                'index'          => $request->index,
-                'name'           => $request->Name,//列表的Ranges->Scenarios->Name
-                'scenario_id'    => $request->ScenarioID,
-                'scenario_name'  => $request->ScenarioName,
-                'steps'          => $request->Steps,
-                'participants'   => $request->Participants,
-            ]);
+                'range_name'     => $item['RangeName'],//列表的Ranges->RangeName
+                'index'          => $item['Index'],
+                'name'           => $item['Name'],//列表的Ranges->Scenarios->Name
+                'scenario_id'    => $item['ScenarioID'],
+                'scenario_name'  => $item['ScenarioName'],
+                'steps'          => json_encode($item['Steps']),
+                'participants'   => json_encode($item['Participants']),
+                'created_at'     => now()->format("Y-m-d H:i:s"),
+                'updated_at'     => now()->format("Y-m-d H:i:s"),
+            ];
         }
 
-        $this->model->whereIndex($request->index)->update([
-            'range_name'    => $request->RangeName,//列表的Ranges->RangeName
-            'name'          => $request->Name,//列表的Ranges->Scenarios->Name
-            'scenario_id'   => $request->ScenarioID,
-            'scenario_name' => $request->ScenarioName,
-            'steps'         => $request->Steps,
-            'participants'  => $request->Participants,
-        ]);
+        $this->model->newQuery()->insert($data);
 
-        return $script;
+        return count($data);
     }
 }
