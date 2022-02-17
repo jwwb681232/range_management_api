@@ -18,9 +18,9 @@ class RtsScriptService
      *
      * @return array
      */
-    public function index()
+    public function index($machineNumber)
     {
-        return $this->model->with(['doors:id,door_id,description','cameras'])->get();
+        return $this->model->where('machine_number',$machineNumber)->with(['doors:id,door_id,description','cameras'])->get();
     }
 
     public function sync(Request $request)

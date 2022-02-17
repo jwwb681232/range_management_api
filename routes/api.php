@@ -62,7 +62,7 @@ Route::group(['middleware'=>['auth:sanctum','auth.user.mode']],function(){
     Route::prefix('/operational')->group(function (){
         Route::get('/audio',['App\Api\Controllers\Operational\AudioController','index']);
 
-        Route::get('/rts-script',['App\Api\Controllers\Operational\RtsScriptController','index']);
+        Route::get('/rts-script/{machine_number}',['App\Api\Controllers\Operational\RtsScriptController','index']);
 
         Route::get('/light',['App\Api\Controllers\Operational\LightController','index']);
 

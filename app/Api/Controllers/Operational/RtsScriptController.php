@@ -17,18 +17,19 @@ class RtsScriptController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/index.php/api/operational/rts-script",
+     *     path="/index.php/api/operational/rts-script/{machine_number}",
      *     tags={"Operational/RTS_Script"},
      *     deprecated=false,
      *     summary="RTS Script列表",
      *     operationId="audio",
      *     security={ { "bearerAuth":{}}},
+     *     @OA\Parameter(in="path",name="machine_number",description="机器编号",schema={"type":"string"},required=true),
      *     @OA\Response(response=200, description="success",@OA\JsonContent()),
      * )
      */
     public function index(Request $request)
     {
-        return apiReturn($this->service->index());
+        return apiReturn($this->service->index($request->machine_number));
     }
 
     /**
