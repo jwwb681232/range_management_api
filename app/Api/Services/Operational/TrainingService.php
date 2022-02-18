@@ -100,6 +100,7 @@ class TrainingService
             ->whereBetween('start_at', $dateBetween)
             ->whereIn('type', $this->type[$request->mode])
             ->with('rtsScript', fn($query) => $query->with('cameras')->select(['id', 'machine_number', 'index', 'name']))
+            ->orderBy('created_at','DESC')
             ->get();
     }
 

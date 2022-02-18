@@ -274,7 +274,7 @@ namespace App\Models{
  * @property string $range_name
  * @property string $index 脚本index
  * @property string $name 脚本名称
- * @property int $scenario_id 场景id
+ * @property mixed $scenario_id 场景id
  * @property string $scenario_name 场景名称
  * @property array $steps 步骤
  * @property array $participants
@@ -309,6 +309,21 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\RtsScriptCamera
+ *
+ * @property string $rts_script_index 关联rts_scripts表index
+ * @property string $channel_code
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScriptCamera newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScriptCamera newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScriptCamera query()
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScriptCamera whereChannelCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScriptCamera whereRtsScriptIndex($value)
+ */
+	class RtsScriptCamera extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Scenario
  *
  * @property int $id
@@ -318,7 +333,7 @@ namespace App\Models{
  * @property string $audio_detail
  * @property string $rts_script_detail
  * @property int $type 培训类型[1：Group,2：Individual]
- * @property int $rts_script_id 关联rts_scripts表id
+ * @property string $rts_script_index 关联rts_scripts表index
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -339,7 +354,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereLightDetail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereRtsScriptDetail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereRtsScriptId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereRtsScriptIndex($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Scenario whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|Scenario withTrashed()
@@ -355,7 +370,7 @@ namespace App\Models{
  * @property int $id
  * @property int $type 培训类型[1：Group,2：Individual,3：Manual Training,4：Remote Control Handset mode]
  * @property int $scenario_id 只有type=[1|2]的时候才有值
- * @property int $rts_script_id
+ * @property string $rts_script_index 关联rts_scripts表index
  * @property string $start_at
  * @property string $end_at
  * @property string $firing_detail
@@ -372,7 +387,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Training whereEndAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Training whereFiringDetail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Training whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Training whereRtsScriptId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Training whereRtsScriptIndex($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Training whereScenarioId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Training whereStartAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Training whereTotalHits($value)
