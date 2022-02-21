@@ -17,9 +17,10 @@ class LightService
     public function index(Request $request)
     {
         $machineNumber = $request->machine_number;
+        $areas = config("light.$request->machine_number") ?: [];
 
         return $this->model
-            ->when($machineNumber, fn($query) => $query->whereIn('deck',config("light.$machineNumber")))
+            ->when($machineNumber, fn($query) => $query->whereIn('deck',$areas))
             ->get()
             ->groupBy('deck');
     }
