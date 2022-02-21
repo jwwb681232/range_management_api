@@ -2,6 +2,7 @@
 
 namespace App\Api\Services\Operational;
 
+use App\Api\Transformers\Operational\Light\IndexTransformer;
 use App\Models\Light;
 use Illuminate\Http\Request;
 
@@ -19,10 +20,11 @@ class LightService
         $machineNumber = $request->machine_number;
         $areas = config("light.$request->machine_number") ?: [];
 
-        return $this->model
+        $lights = $this->model
             ->when($machineNumber, fn($query) => $query->whereIn('deck',$areas))
-            ->get()
-            ->groupBy('deck');
+            ->get();
+
+        return (new IndexTransformer())->transform($lights);
     }
 
     public function sync(Request $request)
