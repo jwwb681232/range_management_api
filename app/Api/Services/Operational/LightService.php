@@ -21,10 +21,24 @@ class LightService
 
     public function sync(Request $request)
     {
+        $this->model->where('id','>',0)->delete();
+
+        $now    = now();
         $lights = [];
-        foreach ($request->all() as $item) {
-            $lights[] = $this->model->updateOrCreate(['number'=>$item['number']],['name'=>$item['name'],"id"=>$item['number']]);
+        foreach ($request->all() as $deck) {
+            foreach ($deck['areas'] as $area) {
+                $lights[] = [
+                    'id'         => $area['number'],
+                    'deck'       => $deck['name'],
+                    'number'     => $area['number'],
+                    'name'       => $area['name'],
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ];
+            }
         }
+
+        $this->model->insert($lights);
 
         return $lights;
     }

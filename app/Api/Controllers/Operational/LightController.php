@@ -20,7 +20,7 @@ class LightController extends Controller
      *     path="/index.php/api/operational/light/sync",
      *     tags={"Operational/Light"},
      *     deprecated=false,
-     *     summary="Light同步(传areas里的数组)",
+     *     summary="Light同步(传folders[0]['folders']里的数组)",
      *     operationId="sync_light",
      *     security={ { "bearerAuth":{}}},
      *     @OA\RequestBody(
