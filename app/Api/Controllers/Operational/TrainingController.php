@@ -51,18 +51,19 @@ class TrainingController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/index.php/api/operational/training/latest",
+     *     path="/index.php/api/operational/training/latest/{machine_number}",
      *     tags={"Operational/Training"},
      *     deprecated=false,
      *     summary="文件夹时间",
      *     operationId="get_training_latest_time",
      *     security={ { "bearerAuth":{}}},
+     *     @OA\Parameter(in="path",name="machine_number",description="机器编号",schema={"type":"string"},required=true),
      *     @OA\Response(response=200, description="success",@OA\JsonContent()),
      * )
      */
-    public function latestTime()
+    public function latestTime(Request $request)
     {
-        return apiReturn($this->service->latestTime());
+        return apiReturn($this->service->latestTime($request));
     }
 
     /**
@@ -75,6 +76,7 @@ class TrainingController extends Controller
      *     security={ { "bearerAuth":{}}},
      *     @OA\Parameter(in="path",name="mode",description="训练模式[manual,scenario]",schema={"type":"string"},required=true),
      *     @OA\Parameter(in="query",name="date",description="搜索日期",schema={"type":"string"},required=false),
+     *     @OA\Parameter(in="query",name="machine_number",description="机器编号",schema={"type":"string"},required=true),
      *     @OA\Response(response=200, description="success",@OA\JsonContent()),
      * )
      */
@@ -93,6 +95,7 @@ class TrainingController extends Controller
      *     security={ { "bearerAuth":{}}},
      *     @OA\Parameter(in="path",name="mode",description="训练模式[manual,scenario]",schema={"type":"string"},required=true),
      *     @OA\Parameter(in="path",name="date",description="训练日期",schema={"type":"string"},required=true),
+     *     @OA\Parameter(in="query",name="machine_number",description="机器编号",schema={"type":"string"},required=true),
      *     @OA\Response(response=200, description="success",@OA\JsonContent()),
      * )
      */
