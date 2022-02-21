@@ -34,12 +34,13 @@ class LightService
         foreach ($request->all() as $deck) {
             foreach ($deck['areas'] as $area) {
                 $lights[] = [
-                    'id'         => $area['number'],
-                    'deck'       => $deck['name'],
-                    'number'     => $area['number'],
-                    'name'       => $area['name'],
-                    'created_at' => $now,
-                    'updated_at' => $now,
+                    'id'          => $area['number'],
+                    'deck'        => $deck['name'],
+                    'number'      => $area['number'],
+                    'name'        => $area['name'],
+                    'description' => $deck['description'] ?: '',
+                    'created_at'  => $now,
+                    'updated_at'  => $now,
                 ];
             }
         }
