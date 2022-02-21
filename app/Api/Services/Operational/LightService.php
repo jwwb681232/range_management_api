@@ -14,9 +14,14 @@ class LightService
         $this->model = new Light();
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->model->all(['id','number','name']);
+        $machineNumber = $request->machine_number;
+
+        return $this->model
+            ->when($machineNumber, fn($query) => $query->whereIn('deck',config("light.$machineNumber")))
+            ->get()
+            ->groupBy('deck');
     }
 
     public function sync(Request $request)

@@ -38,17 +38,18 @@ class LightController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/index.php/api/operational/light",
+     *     path="/index.php/api/operational/light/{machine_number}",
      *     tags={"Operational/Light"},
      *     deprecated=false,
      *     summary="Light列表",
      *     operationId="ge_lights",
      *     security={ { "bearerAuth":{}}},
+     *     @OA\Parameter(in="path",name="machine_number",description="机器编号",schema={"type":"string"},required=true),
      *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
      * )
      */
     public function index(Request $request)
     {
-        return apiReturn($this->service->index());
+        return apiReturn($this->service->index($request));
     }
 }
