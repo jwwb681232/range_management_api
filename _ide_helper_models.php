@@ -167,14 +167,18 @@ namespace App\Models{
  * App\Models\Light
  *
  * @property int $id
+ * @property string $deck
  * @property int $number
  * @property string $name
+ * @property string $description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Light newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Light newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Light query()
  * @method static \Illuminate\Database\Eloquent\Builder|Light whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Light whereDeck($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Light whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Light whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Light whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Light whereNumber($value)
