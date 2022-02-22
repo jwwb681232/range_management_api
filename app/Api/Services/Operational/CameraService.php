@@ -27,7 +27,7 @@ class CameraService
     {
         $this->model->where('id','>',0)->delete();
 
-        $now     = now();
+        $now     = now()->format('Y-m-d H:i:s');
         $cameras = [];
         foreach ($request->all() as $device) {
             foreach ($device['units'] as $unit) {
@@ -65,12 +65,11 @@ class CameraService
 
         $links = [];
 
+        $camerasConfig = config('camera');
+
         foreach ($rtsScripts as $rtsScript) {
             foreach ($cameras as $camera){
-                if (
-                    ($rtsScript->machine_number == 'CQB' && $camera['code'] == '1000014')
-                    || ($rtsScript->machine_number == '25M Range' && $camera['code'] == '1000015')
-                ){
+                if (isset($camerasConfig[$rtsScript->machine_number]) && $camerasConfig[$rtsScript->machine_number] == $camera['code']){
                     $links[] = [
                         'rts_script_index'=>$rtsScript->index,
                         'channel_code'=>$camera['channel_code'],
@@ -78,6 +77,10 @@ class CameraService
                 }
             }
         }
+
+        /*echo '<pre>';
+        print_r($links);
+        die;*/
 
         RtsScriptCamera::query()->insert($links);
 
