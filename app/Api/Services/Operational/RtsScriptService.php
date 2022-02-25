@@ -53,9 +53,15 @@ class RtsScriptService
         return count($data);
     }
 
+    /**
+     * @return bool
+     */
     private function clearExpiredScripts()
     {
         $existedScripts = $this->model->newQuery()->pluck('index');
+        if (!$existedScripts->count()){
+            return true;
+        }
 
         $scenarios = Scenario::query()->whereNotIn('rts_script_index',$existedScripts)->with('audios','lights')->get();
         foreach ($scenarios as $scenario) {
@@ -68,5 +74,6 @@ class RtsScriptService
         RtsScriptDoor::whereNotIn('rts_script_index',$existedScripts)->delete();
         Training::whereNotIn('rts_script_index',$existedScripts)->delete();
 
+        return true;
     }
 }
