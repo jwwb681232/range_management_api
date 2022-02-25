@@ -35,7 +35,7 @@ class RtsScriptService
             $data[] = [
                 'machine_number' => $request->machine_number,//列表的Ranges->RangeName
                 'range_name'     => $item['RangeName'],//列表的Ranges->RangeName
-                'index'          => isset($item['Index']) ? $item['Index'] : $item['ScenarioID'],
+                'index'          => $item['Index'] ?? $item['ScenarioID'],
                 'name'           => $item['Name'],//列表的Ranges->Scenarios->Name
                 'scenario_id'    => $item['ScenarioID'],
                 'scenario_name'  => $item['ScenarioName'],
