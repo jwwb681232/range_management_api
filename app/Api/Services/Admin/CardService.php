@@ -47,7 +47,7 @@ class CardService
         $limit   = $request->input('limit', 10);
         $offset  = ($page - 1) * $limit;
 
-        $condition = $this->model->newQuery()
+        $condition = $this->model
             ->when($keyword, fn($query) => $query->where('number', 'LIKE', "%$keyword%"))
             ->when($unit, fn($query) => $query->whereHas('user', fn($subQuery) => $subQuery->where('unit_id', $unit)))
             ->when($mode, fn($query) => $query->whereHas('user', fn($userQuery) => $userQuery->whereHas('modes', fn($modesQuery) => $modesQuery->where('id', $mode))));

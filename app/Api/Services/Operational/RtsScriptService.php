@@ -46,7 +46,7 @@ class RtsScriptService
             ];
         }
 
-        $this->model->newQuery()->insert($data);
+        $this->model->insert($data);
 
         $this->clearExpiredScripts();
 
@@ -58,12 +58,12 @@ class RtsScriptService
      */
     private function clearExpiredScripts()
     {
-        $existedScripts = $this->model->newQuery()->pluck('index');
+        $existedScripts = $this->model->pluck('index');
         if (!$existedScripts->count()){
             return true;
         }
 
-        $scenarios = Scenario::query()->whereNotIn('rts_script_index',$existedScripts)->with('audios','lights')->get();
+        $scenarios = Scenario::whereNotIn('rts_script_index',$existedScripts)->with('audios','lights')->get();
         foreach ($scenarios as $scenario) {
             $scenario->audios()->sync([]);
             $scenario->lights()->sync([]);

@@ -30,7 +30,7 @@ class TrainingService
      */
     public function detail($id)
     {
-        return $this->model->newQuery()
+        return $this->model
             ->with('rtsScript', fn($query) => $query->with('cameras')->select(['id', 'machine_number', 'index', 'name']))
             ->with('scenario')
             ->find($id);
