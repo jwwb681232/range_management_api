@@ -28,6 +28,9 @@ class LoginTransformer
         ];
     }
 
+    /**
+     * @return bool
+     */
     public function onlyARR()
     {
         $mode = $this->user->modes->where('id', 1)->first();
@@ -39,6 +42,9 @@ class LoginTransformer
         }
     }
 
+    /**
+     * @return string
+     */
     private function token()
     {
         $this->user->tokens()->delete();
