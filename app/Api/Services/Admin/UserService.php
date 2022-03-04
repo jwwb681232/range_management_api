@@ -2,6 +2,7 @@
 
 namespace App\Api\Services\Admin;
 
+use App\Api\Transformers\Auth\LoginTransformer;
 use App\Models\Card;
 use App\Models\User;
 use Faker\Factory;
@@ -29,8 +30,11 @@ class UserService
      */
     public function show(Request $request)
     {
-        return $this->model->with(['unit:id,name','card:id,number','modes:id,name'])
+        $user = $this->model->with(['unit:id,name','card:id,number','modes:id,name'])
             ->findOrFail($request->id,['id','name','nric','unit_id','card_id','status','created_at']);
+        $user->only_arr = (new LoginTransformer($user))->onlyARR();
+
+        return $user;
     }
 
     /**
