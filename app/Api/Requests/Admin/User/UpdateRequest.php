@@ -30,6 +30,7 @@ class UpdateRequest extends FormRequest
             'unit_id'  => 'required|integer|max:64|exists:units,id',
             'mode_id'  => 'required|string',
             'status'   => 'required|in:0,1',
+            'only_arr' => 'in:0,1',
         ];
     }
 

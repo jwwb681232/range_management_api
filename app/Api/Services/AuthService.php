@@ -22,7 +22,7 @@ class AuthService
      */
     public function login(Request $request)
     {
-        $user = $this->model->with(['modes:id'])->whereName($request->name)->first();
+        $user = $this->model->with(['modes:id,name'])->whereName($request->name)->first();
 
         // unit不匹配
         if ($user->unit_id != $request->unit_id) {
@@ -43,7 +43,8 @@ class AuthService
             throw ValidationException::withMessages(['name' => ['Account to be disabled, please contact the administrator']]);
         }
 
-        return LoginTransformer::transform($user);
+        //return new LoginTransformer::transform($user);
+        return (new LoginTransformer($user))->transform();
     }
 
     /**

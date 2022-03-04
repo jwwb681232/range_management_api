@@ -2,6 +2,7 @@
 
 namespace App\Api\Transformers\Admin\User;
 
+use App\Api\Transformers\Auth\LoginTransformer;
 use App\Models\User;
 use Illuminate\Support\Collection;
 
@@ -19,6 +20,7 @@ class IndexTransformer
                 'unit'       => $item->unit->name,
                 'modes'      => $item->modes->pluck('name')->join('/'),
                 'status'     => User::$statusMap[$item->status],
+                'only_arr'   => (new LoginTransformer($item))->onlyARR(),
                 'created_at' => $item->created_at->format("d M Y"),
             ];
         }
