@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     public function modes()
     {
-        return $this->belongsToMany(Mode::class,'user_mode','user_id','mode_id');
+        return $this->belongsToMany(Mode::class,'user_mode','user_id','mode_id')->withPivot('abilities');
     }
 
     public function card()

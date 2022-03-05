@@ -30,6 +30,7 @@ class StoreRequest extends FormRequest
             'mode_id'  => 'required|string',
             'password' => 'required|string|confirmed|min:6|max:32',
             'status'   => 'required|in:0,1',
+            'only_arr' => 'in:0,1',
         ];
     }
 

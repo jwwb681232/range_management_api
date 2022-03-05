@@ -59,7 +59,7 @@ class CameraService
 
     private function linkRtsScript($cameras)
     {
-        RtsScriptCamera::query()->where('rts_script_index','!=','0')->delete();
+        RtsScriptCamera::where('rts_script_index','!=','0')->delete();
 
         $rtsScripts = RtsScript::all();
 
@@ -82,7 +82,7 @@ class CameraService
         print_r($links);
         die;*/
 
-        RtsScriptCamera::query()->insert($links);
+        RtsScriptCamera::insert($links);
 
     }
 }

@@ -72,7 +72,7 @@ class ScenarioService
     public function update(Request $request)
     {
         return DB::transaction(function () use ($request) {
-            $scenario = $this->model->newQuery()->findOrFail($request->id);
+            $scenario = $this->model->findOrFail($request->id);
 
             $scenario->name              = $request->name;
             $scenario->description       = $request->description;

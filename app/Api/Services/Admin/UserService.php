@@ -2,6 +2,7 @@
 
 namespace App\Api\Services\Admin;
 
+use App\Api\Transformers\Auth\LoginTransformer;
 use App\Models\Card;
 use App\Models\User;
 use Faker\Factory;
@@ -29,8 +30,11 @@ class UserService
      */
     public function show(Request $request)
     {
-        return $this->model->with(['unit:id,name','card:id,number','modes:id,name'])
+        $user = $this->model->newQuery()->with(['unit:id,name','card:id,number','modes:id,name'])
             ->findOrFail($request->id,['id','name','nric','unit_id','card_id','status','created_at']);
+        $user->only_arr = (new LoginTransformer($user))->onlyARR();
+
+        return $user;
     }
 
     /**
@@ -68,7 +72,7 @@ class UserService
     /**
      * @param  Request  $request
      *
-     * @return Model|User
+     * @return array
      */
     public function store(Request $request)
     {
@@ -81,7 +85,9 @@ class UserService
             'status'   => $request->status,
         ]);
 
-        $user->modes()->sync($request->mode_ids);
+        $user->modes()->sync(
+            $this->syncModesWithPivot($request->only_arr,$request->mode_ids)
+        );
 
         return $user->only(['id','name']);
     }
@@ -97,9 +103,30 @@ class UserService
 
         $user->fill($request->only(['name','nric','unit_id','status']))->save();
 
-        $user->modes()->sync($request->mode_ids);
+        $user->modes()->sync(
+            $this->syncModesWithPivot($request->only_arr,$request->mode_ids)
+        );
 
         return $user->only(['id','name','nric']);
+    }
+
+    /**
+     * @param $onlyARR
+     * @param $modeIds
+     *
+     * @return array|array[]
+     */
+    private function syncModesWithPivot($onlyARR,$modeIds)
+    {
+        if ($onlyARR){
+            return [1 => ['abilities'=>json_encode(['After Action Review'])]];
+        }else{
+            $modes = [];
+            foreach ($modeIds as $modeId) {
+                $modes[$modeId] = ['abilities' => json_encode(['*'])];
+            }
+            return $modes;
+        }
     }
 
     /**

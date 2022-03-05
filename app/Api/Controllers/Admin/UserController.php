@@ -75,6 +75,7 @@ class UserController extends Controller
      *             @OA\Property( property="password",description="密码", type="string"),
      *             @OA\Property( property="password_confirmation",description="确认密码", type="string"),
      *             @OA\Property( property="status",description="状态（1：可以，0：禁用）", type="integer",enum={1,0}),
+     *             @OA\Property( property="only_arr",description="ARR账号", type="integer",enum={1,0}),
      *         )
      *     )),
      *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
@@ -102,6 +103,7 @@ class UserController extends Controller
      *             @OA\Property( property="unit_id",description="单位ID", type="integer"),
      *             @OA\Property( property="mode_id",description="模型角色Id(多个以,分隔)", type="array", @OA\Items(type="string")),
      *             @OA\Property( property="status",description="状态（1：可以，0：禁用）", type="integer",enum={1,0}),
+     *             @OA\Property( property="only_arr",description="ARR账号", type="integer",enum={1,0}),
      *         )
      *     )),
      *     @OA\Response(response=200, description="Successful",@OA\JsonContent())
