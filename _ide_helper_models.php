@@ -328,6 +328,21 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\RtsScriptDoor
+ *
+ * @property string $rts_script_index 关联rts_scripts表index
+ * @property int $door_id
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScriptDoor newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScriptDoor newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScriptDoor query()
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScriptDoor whereDoorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RtsScriptDoor whereRtsScriptIndex($value)
+ */
+	class RtsScriptDoor extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Scenario
  *
  * @property int $id

@@ -30,7 +30,7 @@ class UserService
      */
     public function show(Request $request)
     {
-        $user = $this->model->with(['unit:id,name','card:id,number','modes:id,name'])
+        $user = $this->model->newQuery()->with(['unit:id,name','card:id,number','modes:id,name'])
             ->findOrFail($request->id,['id','name','nric','unit_id','card_id','status','created_at']);
         $user->only_arr = (new LoginTransformer($user))->onlyARR();
 
