@@ -56,12 +56,13 @@ class TrainingService
      */
     public function latestTime(Request $request)
     {
-        $manual   = $this->model->whereHas('rtsScript', fn($query) => $query->where('machine_number',$request->machine_number))
+        $machineNumber = $request->machine_number;
+        $manual   = $this->model->whereHas('rtsScript', fn($query) => $query->when($machineNumber != 'ALL', fn($subQuery) => $subQuery->where('machine_number',$machineNumber)))
             ->whereIn('type', $this->type['manual'])
             ->orderByDesc('start_at')
             ->first();
 
-        $scenario = $this->model->whereHas('rtsScript', fn($query) => $query->where('machine_number',$request->machine_number))
+        $scenario = $this->model->whereHas('rtsScript', fn($query) => $query->when($machineNumber != 'ALL', fn($subQuery) => $subQuery->where('machine_number',$machineNumber)))
             ->whereIn('type', $this->type['scenario'])
             ->orderByDesc('start_at')
             ->first();
@@ -88,7 +89,7 @@ class TrainingService
 
                 return $query->whereBetween('start_at', $between);
             })
-            ->when($machineNumber, fn($query) => $query->whereHas('rtsScript', fn($query) => $query->where('machine_number',$machineNumber)))
+            ->when($machineNumber, fn($query) => $query->whereHas('rtsScript', fn($query) => $query->when($machineNumber != 'ALL', fn($subQuery) => $subQuery->where('machine_number',$machineNumber))))
             ->whereIn('type', $this->type[$request->mode])
             ->selectRaw("DATE_FORMAT(start_at,'%Y-%m-%d') days")
             ->groupBy('days')
@@ -107,7 +108,7 @@ class TrainingService
         $machineNumber = $request->input('machine_number');
 
         return $this->model
-            ->when($machineNumber, fn($query) => $query->whereHas('rtsScript', fn($query) => $query->where('machine_number',$machineNumber)))
+            ->when($machineNumber, fn($query) => $query->whereHas('rtsScript', fn($query) => $query->when($machineNumber != 'ALL', fn($subQuery) => $subQuery->where('machine_number',$machineNumber))))
             ->whereBetween('start_at', $dateBetween)
             ->whereIn('type', $this->type[$request->mode])
             ->with('rtsScript', fn($query) => $query->with('cameras')->select(['id', 'machine_number', 'index', 'name']))
