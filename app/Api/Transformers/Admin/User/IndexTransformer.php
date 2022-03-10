@@ -13,14 +13,15 @@ class IndexTransformer
         $data = [];
 
         foreach ($collection as $item) {
+            $onlyARR = (new LoginTransformer($item))->onlyARR();
             $data[] = [
                 'id'         => $item->id,
                 'name'       => $item->name,
                 'nric'       => $item->nric,
                 'unit'       => $item->unit->name,
-                'modes'      => $item->modes->pluck('name')->join('/'),
+                'modes'      => $onlyARR ? "Operational (Only ARR)" : $item->modes->pluck('name')->join(' / '),
                 'status'     => User::$statusMap[$item->status],
-                'only_arr'   => (new LoginTransformer($item))->onlyARR(),
+                'only_arr'   => $onlyARR,
                 'created_at' => $item->created_at->format("d M Y"),
             ];
         }
