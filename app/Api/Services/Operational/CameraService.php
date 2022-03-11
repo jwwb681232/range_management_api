@@ -57,8 +57,12 @@ class CameraService
         return $this->model->insert($cameras);
     }
 
-    private function linkRtsScript($cameras)
+    /**
+     * @param  $cameras[]
+     */
+    private function linkRtsScript(array $cameras)
     {
+        // 删除所有之前的关联
         RtsScriptCamera::where('rts_script_index','!=','0')->delete();
 
         $rtsScripts = RtsScript::all();
@@ -77,10 +81,6 @@ class CameraService
                 }
             }
         }
-
-        /*echo '<pre>';
-        print_r($links);
-        die;*/
 
         RtsScriptCamera::insert($links);
 
