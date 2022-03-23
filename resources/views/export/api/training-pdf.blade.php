@@ -38,7 +38,7 @@
 <p class="table_title">AFTER ACTION REVIEW(AAR)</p>
 
 <div class="detail">
-    <p>Scenario Name: {{ $data->scenario->name }}</p>
+    <p>Scenario Name: {{ $data->scenario?->name }}</p>
     <p>Firing Detail: {{ $data->firing_detail }}</p>
     <p>Training Mode: {{ \App\Models\Training::$typeMap[$data->type] }}</p>
     <p>Total Hits: {{ $data->total_hits }}</p>
