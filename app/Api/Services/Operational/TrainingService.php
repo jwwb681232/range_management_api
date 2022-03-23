@@ -133,7 +133,7 @@ class TrainingService
             'end_at'           => $request->end_at,
             'firing_detail'    => $request->firing_detail,
             'total_hits'       => $request->total_hits,
-            'trainees'         => $request->trainees,
+            'trainees'         => $request->trainees ?: [],
         ];
 
         return $this->model->create($data);
