@@ -25,6 +25,11 @@ class AuthService
         $user = $this->model->with(['modes:id,name'])->whereName($request->name)->first();
 
         // unit不匹配
+        if (!$user) {
+            throw ValidationException::withMessages(["name" => ["The User Not Found."]]);
+        }
+
+        // unit不匹配
         if ($user->unit_id != $request->unit_id) {
             throw ValidationException::withMessages(["unit_id" => ["Unit does not match the user"]]);
         }
